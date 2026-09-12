@@ -1,0 +1,1622 @@
+<!doctype html>
+<!--
+  The source of Memo Chinese's published privacy policy. Host this file next to
+  open-source-licenses.html and put its HTTPS URL in EXPO_PUBLIC_PRIVACY_URL and
+  App Store Connect.
+
+  It lives in the repo so that a change to what the app collects or asks for is
+  made in the same commit as the sentence that discloses it. The published copy
+  went stale once already: the microphone left the app (ab144ef) and came back
+  (998a130) with no commit able to touch the policy either time.
+  packages/mobile/src/privacyConfig.test.ts now fails when app.json asks for the
+  microphone and the #micro-giong-noi section below is missing, or when that
+  section stops matching SPEECH_RECORDING_POLICY.
+
+  Two figures in this document are PUBLISHED figures, i.e. stating them here is
+  what stops them being changed quietly: the 24-hour tombstone
+  (TOMBSTONE_TTL_HOURS, packages/server/src/db/accountRepo.ts) and the 400-day
+  subscription-event retention (SUBSCRIPTION_EVENT_TTL_DAYS,
+  packages/server/src/db/subscriptionsRepo.ts).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chính sách quyền riêng tư — Memo Chinese</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        max-width: 46rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 4rem;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: #fff;
+      }
+      h1 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+        margin: 0 0 0.25rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+        margin: 2.5rem 0 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid #ddd;
+      }
+      p,
+      li {
+        margin: 0.6rem 0;
+      }
+      .sub {
+        color: #555;
+        font-size: 0.95rem;
+        margin-top: 0;
+      }
+      .draft {
+        padding: 0.75rem 1rem;
+        border: 1px solid #e0b400;
+        border-radius: 4px;
+        background: #fff8db;
+      }
+      a {
+        color: #0b4fa8;
+      }
+      #muc-luc ol {
+        padding-left: 1.4rem;
+      }
+      #muc-luc li {
+        margin: 0.25rem 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 0.5rem 0.6rem 0.5rem 0;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        font-weight: 600;
+      }
+      @media print {
+        body {
+          max-width: none;
+          font-size: 11pt;
+        }
+        h2 {
+          page-break-after: avoid;
+        }
+        table {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chính sách quyền riêng tư</h1>
+    <p class="sub">Privacy policy — Memo Chinese</p>
+    <p class="sub">
+      Có hiệu lực từ 12/09/2026 · Cập nhật lần cuối 12/09/2026 — Effective 12 September 2026 · Last
+      updated 12 September 2026
+    </p>
+
+    <section id="tom-tat">
+      <h2>Tóm tắt / At a glance</h2>
+
+      <p>
+        Memo Chinese là ứng dụng luyện viết chữ Hán dành cho người Việt học tiếng Trung, do
+        <strong>Hồ Ngọc Lam</strong> — một cá nhân — phát triển và vận hành. Tài liệu này mô tả đúng
+        những gì bản đang phát hành thực sự làm. Nếu ứng dụng thay đổi cách xử lý dữ liệu, tài liệu
+        này thay đổi trong cùng bản phát hành đó.
+      </p>
+      <ul>
+        <li>
+          <strong>Không quảng cáo, không theo dõi.</strong> Ứng dụng không cài bất kỳ bộ công cụ
+          quảng cáo hay đo lường quảng cáo nào, không theo dõi bạn sang ứng dụng hoặc trang web
+          khác, và không bao giờ hỏi xin quyền theo dõi (App Tracking Transparency). Chúng tôi khai
+          báo với Apple rằng ứng dụng không có hoạt động theo dõi nào.
+        </li>
+        <li>
+          <strong>Không bán, không chia sẻ để tiếp thị.</strong> Chúng tôi không bán dữ liệu cá
+          nhân, không trao đổi dữ liệu với bên môi giới dữ liệu, và không chia sẻ dữ liệu của bạn
+          cho mục đích quảng cáo hay tiếp thị của bất kỳ ai.
+        </li>
+        <li>
+          <strong>Mọi thứ chúng tôi giữ đều để ứng dụng chạy được.</strong> Tài khoản để tiến độ đi
+          theo bạn qua các thiết bị; dữ liệu học để ứng dụng biết nên dạy bạn từ nào tiếp theo, và
+          khi nào cần ôn lại.
+        </li>
+        <li>
+          <strong>Chữ viết tay và giọng nói của bạn không rời khỏi máy.</strong> Nhận dạng nét chữ
+          và nhận dạng giọng nói đều chạy ngay trên điện thoại; máy chủ của chúng tôi không có bộ
+          nhận dạng nào cả.
+        </li>
+        <li>
+          <strong>Không câu chữ nào bạn viết được gửi tới mô hình AI.</strong> Lời nhắc gửi cho nhà
+          cung cấp AI chỉ được ghép từ dữ liệu từ điển của chính máy chủ. Xem
+          <a href="#luyen-tap-cung-ai">Luyện tập cùng AI</a>.
+        </li>
+      </ul>
+      <p>
+        Trong phần khai báo dữ liệu trên App Store, chúng tôi khai sáu loại dữ liệu:
+        <strong>Tên, Địa chỉ email, Mã người dùng, Ảnh hoặc video, Tương tác với sản phẩm</strong>
+        và <strong>Giao dịch mua</strong>. Cả sáu đều được khai là gắn với tài khoản của bạn, không
+        dùng để theo dõi, và chỉ dùng cho chức năng của ứng dụng — đúng như tài liệu này mô tả.
+      </p>
+
+      <p lang="en">
+        Memo Chinese is a Chinese handwriting-practice app for Vietnamese learners, built and run by
+        <strong>Hồ Ngọc Lam</strong>, an individual developer. This document describes what the
+        shipping build actually does. If the app changes how it handles data, this document changes
+        in the same release.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>No advertising, no tracking.</strong> The app contains no advertising or ad
+          measurement SDK, does not track you across other apps or websites, and never asks for
+          tracking permission (App Tracking Transparency). We declare to Apple that the app performs
+          no tracking.
+        </li>
+        <li>
+          <strong>No selling, no sharing for marketing.</strong> We do not sell personal data, do
+          not trade it with data brokers, and do not share your data for anyone's advertising or
+          marketing.
+        </li>
+        <li>
+          <strong>Everything we keep is there to make the app work.</strong> An account so your
+          progress follows you across devices; learning data so the app knows which word to teach
+          you next and when to bring one back.
+        </li>
+        <li>
+          <strong>Your handwriting and your voice never leave the device.</strong> Both stroke
+          recognition and speech recognition run on the phone itself; our servers have no recognizer
+          of either kind.
+        </li>
+        <li>
+          <strong>Nothing you write is sent to an AI model.</strong> The prompt sent to our AI
+          provider is assembled only from the server's own dictionary data. See
+          <a href="#luyen-tap-cung-ai">Practising with AI</a>.
+        </li>
+      </ul>
+      <p lang="en">
+        In the App Store data disclosure we declare six data types:
+        <strong>Name, Email Address, User ID, Photos or Videos, Product Interaction</strong> and
+        <strong>Purchases</strong>. All six are declared as linked to your account, not used for
+        tracking, and used for App Functionality — exactly as described below.
+      </p>
+    </section>
+
+    <section id="muc-luc">
+      <h2>Mục lục / Contents</h2>
+      <ol>
+        <li><a href="#ai-chiu-trach-nhiem">Ai chịu trách nhiệm / Who is responsible</a></li>
+        <li><a href="#tai-khoan-va-danh-tinh">Tài khoản và danh tính / Account and identity</a></li>
+        <li><a href="#du-lieu-hoc-tap">Dữ liệu học tập / Learning data</a></li>
+        <li>
+          <a href="#du-lieu-tren-thiet-bi">Dữ liệu lưu trên máy bạn / Data kept on your device</a>
+        </li>
+        <li><a href="#anh-dai-dien">Ảnh đại diện và thư viện ảnh / Avatar and photo library</a></li>
+        <li><a href="#chu-viet-tay">Chữ viết tay / Handwriting</a></li>
+        <li><a href="#micro-giong-noi">Micrô và giọng nói / Microphone and speech</a></li>
+        <li><a href="#luyen-tap-cung-ai">Luyện tập cùng AI / Practising with AI</a></li>
+        <li><a href="#bao-cao-noi-dung">Báo cáo một câu / Reporting a sentence</a></li>
+        <li><a href="#dang-ky-thanh-toan">Đăng ký trả phí / Subscriptions</a></li>
+        <li>
+          <a href="#bao-cao-su-co"
+            >Báo cáo sự cố và số liệu sử dụng / Crash reports and analytics</a
+          >
+        </li>
+        <li><a href="#ben-thu-ba">Các bên chúng tôi dùng / Third parties we use</a></li>
+        <li>
+          <a href="#chuyen-du-lieu">Chuyển dữ liệu ra nước ngoài / International transfers</a>
+        </li>
+        <li><a href="#co-so-phap-ly">Cơ sở pháp lý / Legal bases</a></li>
+        <li><a href="#quyen-cua-ban">Quyền của bạn / Your rights</a></li>
+        <li><a href="#luu-tru-va-xoa">Lưu trữ và xoá / Retention and deletion</a></li>
+        <li><a href="#bao-mat">Bảo mật / Security</a></li>
+        <li><a href="#tuoi-toi-thieu">Tuổi tối thiểu / Minimum age</a></li>
+        <li><a href="#thay-doi">Thay đổi chính sách / Changes to this policy</a></li>
+        <li><a href="#lien-he">Liên hệ / Contact</a></li>
+      </ol>
+    </section>
+
+    <section id="ai-chiu-trach-nhiem">
+      <h2>Ai chịu trách nhiệm / Who is responsible</h2>
+
+      <p>
+        Bên kiểm soát dữ liệu của Memo Chinese là <strong>Hồ Ngọc Lam</strong>, một nhà phát triển
+        cá nhân tại Việt Nam. Không có công ty, không có đội ngũ, không có phòng ban nào khác đọc dữ
+        liệu của bạn.
+      </p>
+      <p>
+        Mọi câu hỏi về quyền riêng tư, mọi yêu cầu về dữ liệu, và mọi liên hệ của phụ huynh hay
+        người giám hộ đều gửi tới
+        <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a>. Đây là địa
+        chỉ liên hệ duy nhất của ứng dụng.
+      </p>
+
+      <p lang="en">
+        The data controller for Memo Chinese is <strong>Hồ Ngọc Lam</strong>, an individual
+        developer in Vietnam. There is no company, no team and no other department that reads your
+        data.
+      </p>
+      <p lang="en">
+        Every privacy question, data request, and message from a parent or guardian goes to
+        <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a>. It is the
+        app's only contact address.
+      </p>
+    </section>
+
+    <section id="tai-khoan-va-danh-tinh">
+      <h2>Tài khoản và danh tính / Account and identity</h2>
+
+      <p>
+        Memo Chinese bắt buộc đăng nhập: tiến độ học được lưu trên máy chủ để nó theo bạn khi bạn
+        đổi máy. Bạn có ba cách đăng nhập — Google, Apple (trên iOS), hoặc email kèm mật khẩu — và
+        cả ba đều do <strong>Firebase Authentication</strong> của Google quản lý.
+      </p>
+      <ul>
+        <li>
+          <strong>Firebase giữ thông tin đăng nhập.</strong> Tuỳ cách bạn chọn, phần này gồm địa chỉ
+          email, mật khẩu đã băm (chỉ với tài khoản email), tên hiển thị nếu nhà cung cấp trả về, và
+          một mã người dùng do Firebase sinh ra.
+        </li>
+        <li>
+          <strong>Cơ sở dữ liệu của chúng tôi không lưu email và không lưu tên của bạn.</strong> Bản
+          ghi tài khoản trên máy chủ chỉ có: một số thứ tự nội bộ, mã người dùng Firebase, khoá và
+          mã phiên bản của tệp ảnh đại diện, thời điểm tạo tài khoản, thời điểm hoạt động gần nhất,
+          và dấu đánh khi tài khoản đang được xoá. Đó là toàn bộ. Tên và email hiển thị trong màn
+          hình Cài đặt được đọc trực tiếp từ Firebase trên máy bạn, không đi qua chúng tôi.
+        </li>
+        <li>
+          <strong>Đăng nhập bằng Apple và “Ẩn email của tôi”.</strong> Nếu bạn chọn ẩn địa chỉ,
+          Apple chỉ đưa cho chúng tôi địa chỉ chuyển tiếp mà Apple tạo ra — chúng tôi không bao giờ
+          thấy email thật của bạn. Apple chỉ trả tên của bạn <em>đúng một lần</em>, ở lần cấp quyền
+          đầu tiên; nếu có, tên đó được ghi vào hồ sơ Firebase và không đi đâu khác.
+        </li>
+        <li>
+          <strong>Tài khoản email phải xác minh địa chỉ</strong> trước khi vào được ứng dụng. Email
+          xác minh và email đặt lại mật khẩu do Firebase gửi, không phải chúng tôi.
+        </li>
+      </ul>
+
+      <p lang="en">
+        Memo Chinese requires signing in: your progress is stored on the server so that it follows
+        you to a new device. There are three ways in — Google, Apple (on iOS), or email and password
+        — and all three are handled by Google's <strong>Firebase Authentication</strong>.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>Firebase holds the credential.</strong> Depending on how you sign in, that means
+          your email address, a hashed password (email accounts only), a display name if the
+          provider returns one, and a user identifier Firebase generates.
+        </li>
+        <li>
+          <strong>Our own database stores neither your email nor your name.</strong> The account row
+          on our server holds only an internal serial number, the Firebase user identifier, the key
+          and version tag of your avatar file, when the account was created, when it was last seen,
+          and a marker set while it is being deleted. That is the whole record. The name and email
+          shown in Settings are read straight from Firebase on your device and never pass through
+          us.
+        </li>
+        <li>
+          <strong>Sign in with Apple and Hide My Email.</strong> If you choose to hide your address,
+          Apple gives us only the relay address it generates — we never see your real one. Apple
+          returns your name <em>only once</em>, at the first authorization; when it does, that name
+          is written to the Firebase profile and goes nowhere else.
+        </li>
+        <li>
+          <strong>Email accounts must verify the address</strong> before reaching the app. The
+          verification and password-reset messages are sent by Firebase, not by us.
+        </li>
+      </ul>
+    </section>
+
+    <section id="du-lieu-hoc-tap">
+      <h2>Dữ liệu học tập / Learning data</h2>
+
+      <p>
+        Đây là phần lớn nhất trong những gì chúng tôi lưu, và toàn bộ nó tồn tại để dạy bạn: ứng
+        dụng phải biết bạn đã viết từ nào, viết lúc nào, và khi nào nên đưa từ đó quay lại. Mỗi bản
+        ghi đều gắn với tài khoản của bạn và chỉ tài khoản của bạn đọc được.
+      </p>
+      <ul>
+        <li>
+          <strong>Lượt viết.</strong> Mỗi ký tự bạn luyện: ký tự đó, từ chứa nó, và thời điểm. Đây
+          là thứ vẽ nên chuỗi ngày học và bảng ghi chú ở màn hình chính.
+        </li>
+        <li>
+          <strong>Từ đã thuộc và từ cần học.</strong> Danh sách từ bạn đã hoàn thành bài viết, và
+          danh sách từ bạn đã tra nhưng chưa học xong.
+        </li>
+        <li><strong>Trình độ HSK</strong> bạn đã chọn.</li>
+        <li>
+          <strong>Lịch ôn tập.</strong> Với mỗi từ đã thuộc, một lịch nhắc lại (thuật toán FSRS) và
+          nhật ký từng lần ôn: kết quả lần đó, thời điểm, và khoảng cách tới lần ôn kế tiếp.
+        </li>
+        <li>
+          <strong>Bài luyện AI của bạn.</strong> Đoạn hội thoại đã sinh ra cho bạn cùng trạng thái
+          hoàn thành, để bạn mở lại được bài cũ và tiếp tục bài đang dở.
+        </li>
+        <li>
+          <strong>Số lượt bài AI đã dùng trong ngày</strong>, để áp hạn mức của gói bạn đang dùng.
+        </li>
+      </ul>
+      <p>
+        <strong>Những gì <em>không</em> có trong đó:</strong> ứng dụng không ghi lại nội dung bạn gõ
+        vào ô tìm kiếm, không lưu nét chữ bạn viết, không lưu bản ghi âm, không lưu văn bản mà bộ
+        nhận dạng giọng nói nghe được, và không lưu điểm phát âm. Máy chủ không có nơi nào để chứa
+        những thứ đó.
+      </p>
+      <p>
+        Bạn có thể xoá riêng phần này mà vẫn giữ tài khoản:
+        <em>Cài đặt → Dữ liệu → Đặt lại tiến độ học</em>. Thao tác đó xoá lượt viết, từ đã thuộc,
+        danh sách cần học, lịch và nhật ký ôn tập, các bài luyện AI của bạn, rồi đưa trình độ về HSK
+        1.
+      </p>
+
+      <p lang="en">
+        This is the largest thing we store, and all of it exists to teach you: the app has to know
+        which words you have written, when, and when to bring one back. Every record belongs to your
+        account and only your account can read it.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>Writing attempts.</strong> For each character you practise: the character, the
+          word it belongs to, and the time. This is what draws the streak strip and the note board
+          on the home screen.
+        </li>
+        <li>
+          <strong>Mastered words and your backlog.</strong> The words whose writing session you
+          finished, and the words you looked up but have not finished learning.
+        </li>
+        <li><strong>The HSK level</strong> you chose.</li>
+        <li>
+          <strong>Your review schedule.</strong> For each mastered word, a spaced-repetition
+          schedule (the FSRS algorithm) and a log of each review: how you did, when, and how far
+          away the next one is.
+        </li>
+        <li>
+          <strong>Your AI drills.</strong> The conversation generated for you and how far through it
+          you got, so you can re-read a past one and resume an unfinished one.
+        </li>
+        <li>
+          <strong>How many AI drills you have used today</strong>, so your plan's daily allowance
+          can be applied.
+        </li>
+      </ul>
+      <p lang="en">
+        <strong>What is <em>not</em> in there:</strong> the app does not record what you type into
+        the search box, does not store the strokes you write, does not store recordings, does not
+        store the text the speech recognizer heard, and does not store pronunciation scores. The
+        server has nowhere to put any of it.
+      </p>
+      <p lang="en">
+        You can erase just this part and keep your account:
+        <em>Cài đặt → Dữ liệu → Đặt lại tiến độ học</em> (Settings → Data → Reset learning
+        progress). That deletes your writing attempts, mastered words, backlog, review schedule and
+        history, and your AI drills, then puts your level back to HSK 1.
+      </p>
+    </section>
+
+    <section id="du-lieu-tren-thiet-bi">
+      <h2>Dữ liệu lưu trên máy bạn / Data kept on your device</h2>
+
+      <p>
+        Một số thứ chỉ nằm trên điện thoại và không bao giờ được gửi đi. Chúng tôi kể ra đây vì
+        chúng vẫn là dữ liệu của bạn, và vì điều quan trọng là bạn biết khi nào chúng bị xoá.
+      </p>
+      <ul>
+        <li>
+          <strong>Tra cứu gần đây</strong> — tối đa 20 từ bạn đã mở từ ô tìm kiếm, để mở lại mà
+          không cần mạng. Bạn xoá được từng mục hoặc xoá tất cả ngay trên màn hình tìm kiếm.
+        </li>
+        <li>
+          <strong>Tuỳ chọn</strong> — số lần lặp mỗi bài, bật/tắt tự động phát âm thanh, và lựa chọn
+          chia sẻ dữ liệu sử dụng.
+        </li>
+        <li>
+          <strong>Bản sao tạm của danh sách cần học và của gói đăng ký</strong>, để màn hình hiện ra
+          ngay khi mạng chậm.
+        </li>
+        <li>
+          <strong>Bản ghi lời thoại của bạn</strong> trong bài hội thoại — xem
+          <a href="#micro-giong-noi">Micrô và giọng nói</a>.
+        </li>
+        <li>
+          <strong>Bản sao ảnh bạn chọn làm ảnh đại diện</strong> — xem
+          <a href="#anh-dai-dien">Ảnh đại diện</a>.
+        </li>
+      </ul>
+      <p>
+        <strong
+          >Toàn bộ danh sách trên bị xoá khi bạn đăng xuất hoặc khi tài khoản khác đăng
+          nhập.</strong
+        >
+        Đây là một biện pháp bảo vệ có chủ đích, không phải dọn dẹp: điện thoại được cho mượn, được
+        bán lại, và một chiếc máy tính bảng ở nhà có thể có hai người học. Nếu việc xoá thất bại
+        giữa chừng, ứng dụng ghi nhớ khoản nợ đó và không cho danh tính nào vào cho tới khi xoá
+        xong.
+      </p>
+
+      <p lang="en">
+        Some things live only on the phone and are never sent anywhere. We list them because they
+        are still your data, and because what matters is knowing when they are erased.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>Recent lookups</strong> — up to 20 words you opened from the search box, so they
+          reopen with no network. You can remove one or clear them all from the search screen
+          itself.
+        </li>
+        <li>
+          <strong>Preferences</strong> — repetitions per session, audio autoplay, and your
+          usage-data choice.
+        </li>
+        <li>
+          <strong>A warm copy of your backlog and of your subscription tier</strong>, so a screen
+          can appear before a slow network answers.
+        </li>
+        <li>
+          <strong>Recordings of your spoken lines</strong> in the conversation drill — see
+          <a href="#micro-giong-noi">Microphone and speech</a>.
+        </li>
+        <li>
+          <strong>A copy of the photo you picked as an avatar</strong> — see
+          <a href="#anh-dai-dien">Avatar</a>.
+        </li>
+      </ul>
+      <p lang="en">
+        <strong
+          >Every item above is erased when you sign out or when a different account signs
+          in.</strong
+        >
+        That is a deliberate protection rather than tidiness: phones get lent and resold, and a
+        tablet at home may have two learners on it. If the erase fails part way through, the app
+        remembers the debt and admits no identity until it has finished.
+      </p>
+    </section>
+
+    <section id="anh-dai-dien">
+      <h2>Ảnh đại diện và thư viện ảnh / Avatar and photo library</h2>
+
+      <p>
+        Ảnh đại diện là tuỳ chọn. Nếu bạn đặt một tấm, ứng dụng xin quyền truy cập thư viện ảnh —
+        <strong
+          >chỉ thư viện ảnh; ứng dụng không có tính năng chụp ảnh và không xin quyền camera</strong
+        >.
+      </p>
+      <ul>
+        <li>
+          <strong>Ảnh được xử lý lại trước khi lưu.</strong> Máy chủ giải mã ảnh bạn gửi lên và mã
+          hoá lại thành JPEG 256×256 do chính nó tạo ra. Vì ảnh được dựng lại từ điểm ảnh, mọi siêu
+          dữ liệu đi kèm — kể cả toạ độ GPS trong EXIF — không thể sống sót qua bước này.
+        </li>
+        <li>
+          <strong>Ảnh nằm trong kho lưu trữ riêng tư.</strong> Tệp được đặt trong một bucket
+          Cloudflare R2 không công khai, dưới một tên ngẫu nhiên không đoán được, và
+          <strong>không có đường dẫn công khai nào tới nó</strong>: ứng dụng lấy ảnh qua một yêu cầu
+          đã đăng nhập tới máy chủ của chúng tôi, chứ không qua một liên kết chia sẻ được.
+        </li>
+        <li>
+          <strong>Bản sao trên máy bị xoá.</strong> Bộ chọn ảnh của hệ điều hành không đưa lại tấm
+          ảnh trong thư viện mà ghi ra một bản sao mới trong vùng nhớ riêng của ứng dụng. Bản sao đó
+          bị xoá ngay sau khi tải lên (dù thành công hay thất bại), được quét dọn ở lần mở ứng dụng
+          kế tiếp nếu ứng dụng bị tắt giữa chừng, và bị xoá khi bạn đăng xuất hoặc xoá tài khoản.
+        </li>
+        <li><strong>Gỡ ảnh bất cứ lúc nào</strong> trong Cài đặt; tệp trên máy chủ bị xoá theo.</li>
+      </ul>
+
+      <p lang="en">
+        An avatar is optional. If you set one, the app asks for photo-library access —
+        <strong>the library only; there is no camera feature and no camera permission</strong>.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>The image is re-encoded before it is stored.</strong> The server decodes what you
+          upload and writes a fresh 256×256 JPEG of its own. Because the output is built from
+          decoded pixels, no attached metadata — including EXIF GPS coordinates — can survive the
+          round trip.
+        </li>
+        <li>
+          <strong>It lives in private storage.</strong> The file goes into a non-public Cloudflare
+          R2 bucket under an unguessable random name, and
+          <strong>there is no public URL for it at all</strong>: the app fetches it through an
+          authenticated request to our server, not through a shareable link.
+        </li>
+        <li>
+          <strong>The on-device copy is deleted.</strong> The system picker does not hand back the
+          library asset; it writes a new copy into the app's private storage. That copy is deleted
+          right after the upload (whether it succeeded or failed), swept away at the next launch if
+          the app was killed in between, and purged when you sign out or delete your account.
+        </li>
+        <li>
+          <strong>You can remove the picture at any time</strong> in Settings; the stored file is
+          deleted with it.
+        </li>
+      </ul>
+    </section>
+
+    <section id="chu-viet-tay">
+      <h2>Chữ viết tay / Handwriting</h2>
+
+      <p>
+        Viết tay là cả ứng dụng, nên đây là câu đáng nói rõ nhất:
+        <strong>nét chữ của bạn không rời khỏi điện thoại.</strong>
+      </p>
+      <ul>
+        <li>
+          <strong>Nhận dạng chạy trên máy.</strong> Ứng dụng dùng Google ML Kit Digital Ink
+          (<code>zh-Hani</code>) nhúng ngay trong ứng dụng. Máy chủ của chúng tôi
+          <strong>không có bộ nhận dạng chữ viết tay nào</strong> — không có đường dẫn nào để gửi
+          nét chữ lên, kể cả nếu muốn.
+        </li>
+        <li>
+          <strong>Mô hình được tải một lần.</strong> Lần đầu bạn dùng bàn phím viết tay, điện thoại
+          tải mô hình nhận dạng từ Google (vài MB). Sau đó mọi thứ chạy ngoại tuyến. Việc tải này là
+          giữa máy bạn và Google, không đi qua chúng tôi.
+        </li>
+        <li>
+          <strong>Nét chữ không được lưu ở đâu cả.</strong> Chúng tồn tại trong bộ nhớ trong lúc bạn
+          viết và biến mất khi bạn sang ký tự tiếp theo. Thứ duy nhất được ghi lại là bạn
+          <em>đã</em> luyện ký tự đó vào lúc nào.
+        </li>
+      </ul>
+
+      <p lang="en">
+        Handwriting is the whole app, so this is the sentence most worth being exact about:
+        <strong>your strokes never leave the phone.</strong>
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>Recognition runs on the device.</strong> The app uses Google ML Kit Digital Ink
+          (<code>zh-Hani</code>) embedded in the app itself. Our server
+          <strong>has no handwriting recognizer</strong> — there is no route to send strokes to,
+          even if we wanted one.
+        </li>
+        <li>
+          <strong>The model downloads once.</strong> The first time you use the handwriting
+          keyboard, your phone downloads the recognition model from Google (a few megabytes). After
+          that everything is offline. That download is between your device and Google; it does not
+          pass through us.
+        </li>
+        <li>
+          <strong>Strokes are stored nowhere.</strong> They exist in memory while you write and are
+          gone when you move to the next character. The only thing recorded is that you
+          <em>did</em> practise that character, and when.
+        </li>
+      </ul>
+    </section>
+
+    <section id="micro-giong-noi">
+      <h2>Micrô và giọng nói / Microphone and speech</h2>
+
+      <p>
+        Memo Chinese xin quyền dùng micrô và nhận dạng giọng nói để bạn luyện đọc to tiếng Trung:
+        nói lại từ vừa viết, đọc câu luyện tập, và nói lời thoại của bạn trong bài hội thoại cùng
+        AI. Bạn có thể từ chối và bỏ qua các bước nói; phần còn lại của ứng dụng vẫn hoạt động bình
+        thường.
+      </p>
+      <ul>
+        <li>
+          <strong>Nhận dạng diễn ra ngay trên máy.</strong> Ứng dụng chỉ dùng bộ nhận dạng ngoại
+          tuyến có sẵn trong điện thoại (của Apple trên iOS; trên Android 13 trở lên, dịch vụ nhận
+          dạng trên thiết bị của máy). Nếu máy không nhận dạng được tiếng Trung khi ngoại tuyến, ứng
+          dụng không hiện các bước nói. Chúng tôi không bao giờ chuyển sang dịch vụ nhận dạng trực
+          tuyến.
+        </li>
+        <li>
+          <strong>Bản ghi âm chỉ được lưu tạm.</strong> Trong bài hội thoại, lời bạn nói được lưu
+          trong bộ nhớ riêng của ứng dụng để cuối bài bạn nghe lại cuộc hội thoại bằng giọng của
+          mình. Bản ghi bị xoá khi bạn rời bài. Bản ghi còn sót do ứng dụng bị tắt đột ngột sẽ bị
+          xoá ở lần mở tiếp theo, và toàn bộ bị xoá khi bạn đăng xuất hoặc xoá tài khoản. Bản ghi
+          không được sao lưu, chia sẻ hay lưu vào thư viện ảnh/phương tiện.
+        </li>
+        <li>
+          <strong>Chúng tôi không nhận giọng nói của bạn.</strong> Bản ghi âm, văn bản mà bộ nhận
+          dạng nghe được và điểm phát âm đều ở lại trên máy. Không thứ nào được gửi tới máy chủ của
+          chúng tôi hay nhà cung cấp AI, và không thứ nào nằm trong báo cáo sự cố.
+        </li>
+      </ul>
+
+      <p lang="en">
+        Memo Chinese asks for microphone and speech-recognition access so you can practise reading
+        Chinese aloud: saying a word you just wrote, reading a practice sentence, and speaking your
+        lines in the AI conversation drill. You can decline and skip those steps; the rest of the
+        app works normally.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>Recognition happens on your device.</strong> The app uses only your phone’s
+          built-in offline recognizer (Apple’s on iOS; the device’s on-device speech service on
+          Android 13 and later). If your device can’t recognize Chinese offline, the speaking steps
+          aren’t offered. We never fall back to an online recognition service.
+        </li>
+        <li>
+          <strong>Recordings are temporary.</strong> In the conversation drill, your spoken lines
+          are saved in the app’s private storage so you can hear the conversation back in your own
+          voice at the end. They’re deleted when you leave the session. Any left behind by a crash
+          are deleted the next time the app opens, and all of them are deleted when you sign out or
+          delete your account. They’re never backed up, shared, or saved to your photo or media
+          library.
+        </li>
+        <li>
+          <strong>We don’t receive your voice.</strong> The recording, the text the recognizer
+          heard, and the pronunciation score all stay on your device. None of them is sent to our
+          servers or our AI provider, and none is included in crash reports.
+        </li>
+      </ul>
+    </section>
+
+    <section id="luyen-tap-cung-ai">
+      <h2>Luyện tập cùng AI / Practising with AI</h2>
+
+      <p>
+        Bài “Ôn tập cùng AI” lấy năm từ bạn đã học và nhờ một mô hình ngôn ngữ viết một đoạn hội
+        thoại ngắn dùng cả năm từ đó, rồi đọc đoạn ấy thành tiếng. Đây là phần duy nhất của ứng dụng
+        gửi bất cứ thứ gì tới một nhà cung cấp AI, nên chúng tôi nói thật rõ nó gửi cái gì.
+      </p>
+      <ul>
+        <li>
+          <strong>Chúng tôi gửi cho Anthropic (Claude):</strong> năm từ tiếng Trung, phiên âm và
+          nghĩa tiếng Việt của chúng — tất cả đọc từ từ điển của chính máy chủ —, trình độ HSK của
+          bạn dưới dạng một con số, và một bối cảnh được máy chủ bốc ngẫu nhiên từ một danh sách có
+          sẵn.
+        </li>
+        <li>
+          <strong>Chúng tôi không gửi:</strong> tên, email, mã tài khoản, hay bất kỳ thứ gì cho phép
+          nhận ra bạn; và <strong>không một chữ nào do bạn viết ra</strong>. Lời nhắc được ghép hoàn
+          toàn từ dữ liệu của máy chủ, chọn ra bằng mã số của từ. Con đường duy nhất từng cho phép
+          văn bản của người học đi tới mô hình — một ô trả lời tự do — đã bị xoá khỏi mã nguồn vào
+          tháng 8/2026, cùng với toàn bộ tuyến xử lý của nó.
+        </li>
+        <li>
+          <strong
+            >Chúng tôi gửi cho Alibaba Cloud DashScope (Qwen TTS, máy chủ quốc tế đặt tại
+            Singapore):</strong
+          >
+          câu tiếng Trung mà mô hình vừa viết ra, kèm tên giọng đọc. Không có gì khác. Nếu dịch vụ
+          này không được bật, ứng dụng dùng bộ đọc có sẵn của điện thoại.
+        </li>
+        <li>
+          <strong>Đoạn hội thoại sinh ra không nói gì về bạn</strong> — nó chỉ là một cảnh dùng năm
+          từ ấy — nên nó được lưu chung và có thể dùng lại cho một người học khác chọn đúng năm từ
+          đó. Phần riêng của bạn (bạn đã điền gì, đã hoàn thành tới đâu) nằm ở bản ghi riêng gắn với
+          tài khoản bạn.
+        </li>
+        <li>
+          <strong>Lời bạn nói và chữ bạn viết trong bài này ở lại trên máy</strong>, giống mọi nơi
+          khác trong ứng dụng. Xem <a href="#micro-giong-noi">Micrô và giọng nói</a> và
+          <a href="#chu-viet-tay">Chữ viết tay</a>.
+        </li>
+      </ul>
+      <p>
+        Vì các câu này do máy sinh ra và không ai đọc trước khi bạn nhìn thấy, ứng dụng luôn có nút
+        báo cáo — xem phần dưới.
+      </p>
+
+      <p lang="en">
+        The “Ôn tập cùng AI” (AI review) drill takes five words you have already learnt and asks a
+        language model to write a short conversation using all five, then has it read aloud. This is
+        the only part of the app that sends anything to an AI provider, so here is exactly what it
+        sends.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>We send Anthropic (Claude):</strong> the five Chinese words, their pinyin and
+          their Vietnamese glosses — all read from the server's own dictionary — your HSK level as a
+          number, and a scene setting the server picks at random from a fixed list.
+        </li>
+        <li>
+          <strong>We do not send:</strong> your name, email, account identifier, or anything else
+          that could identify you; and <strong>not one word you wrote</strong>. The prompt is
+          assembled entirely from server-owned data, selected by numeric word ids. The one path that
+          could ever have carried learner text to a model — a free-text answer box — was deleted
+          from the codebase in August 2026, along with its whole pipeline.
+        </li>
+        <li>
+          <strong
+            >We send Alibaba Cloud DashScope (Qwen TTS, international endpoint in
+            Singapore):</strong
+          >
+          the Chinese sentence the model just wrote, plus a voice name. Nothing else. If that
+          service is not configured, the app uses your phone's built-in speech.
+        </li>
+        <li>
+          <strong>The generated conversation says nothing about you</strong> — it is just a scene
+          using those five words — so it is stored shared and may be reused for another learner who
+          picks the same five. Your own part of it (what you filled in, how far you got) lives in a
+          separate record belonging to your account.
+        </li>
+        <li>
+          <strong>What you say and write during the drill stays on the device</strong>, as
+          everywhere else in the app. See <a href="#micro-giong-noi">Microphone and speech</a> and
+          <a href="#chu-viet-tay">Handwriting</a>.
+        </li>
+      </ul>
+      <p lang="en">
+        Because these sentences are machine-written and nobody reads them before you do, there is
+        always a way to report one — see below.
+      </p>
+    </section>
+
+    <section id="bao-cao-noi-dung">
+      <h2>Báo cáo một câu / Reporting a sentence</h2>
+
+      <p>
+        Mỗi câu luyện tập do AI sinh ra đều có một nút hình lá cờ nhỏ bên cạnh (“Báo lỗi câu này”). Khi bạn gửi báo cáo,
+        chúng tôi lưu: bề mặt bạn đang xem và lý do bạn chọn (cả hai đều là danh sách cố định, không
+        phải chữ tự do), câu tiếng Trung và bản dịch tiếng Việt đúng như bạn nhìn thấy, mã bài học
+        nếu có, và <strong>ghi chú tuỳ chọn của bạn</strong>.
+      </p>
+      <p>
+        Ô ghi chú đó là
+        <strong
+          >chỗ duy nhất trong toàn bộ ứng dụng mà chữ do bạn tự viết được gửi lên máy chủ</strong
+        >. Nó được lưu để một con người đọc và xử lý, và
+        <strong>không bao giờ được đưa vào lời nhắc gửi cho mô hình AI</strong>. Vui lòng đừng viết
+        thông tin cá nhân vào đó — nó chỉ cần đủ để chúng tôi hiểu câu kia sai ở chỗ nào. Báo cáo bị
+        xoá cùng tài khoản khi bạn xoá tài khoản.
+      </p>
+
+      <p lang="en">
+        Every AI-generated practice sentence carries a small flag button beside it (“Báo lỗi câu này”). When
+        you send a report we store: which surface you were on and the reason you picked (both closed
+        lists, not free text), the Chinese sentence and its Vietnamese translation exactly as you
+        saw them, the session id where there is one, and <strong>your optional note</strong>.
+      </p>
+      <p lang="en">
+        That note field is
+        <strong
+          >the only place in the entire app where text you wrote yourself is sent to our
+          server</strong
+        >. It is stored for a human to read and act on, and is
+        <strong>never put into a prompt sent to an AI model</strong>. Please do not put personal
+        information in it — it only needs to say what is wrong with the sentence. Reports are
+        deleted with your account.
+      </p>
+    </section>
+
+    <section id="dang-ky-thanh-toan">
+      <h2>Đăng ký trả phí / Subscriptions</h2>
+
+      <p>
+        Memo Chinese có gói trả phí, <strong>chỉ trên iOS</strong>. Apple thu tiền, RevenueCat xác
+        định bạn đang có quyền lợi nào, và máy chủ của chúng tôi dùng kết quả đó để mở hạn mức hằng
+        ngày.
+      </p>
+      <ul>
+        <li>
+          <strong>Chúng tôi không bao giờ thấy thông tin thanh toán của bạn.</strong> Thẻ, hoá đơn
+          và việc gia hạn hoàn toàn thuộc về Apple. Ứng dụng hiển thị màn hình mua hàng do
+          RevenueCat dựng sẵn, nên giá cả cũng đến thẳng từ App Store.
+        </li>
+        <li>
+          <strong>RevenueCat nhận mã người dùng Firebase của bạn</strong> để gắn giao dịch mua với
+          tài khoản, cùng các sự kiện đăng ký mà Apple gửi cho họ.
+        </li>
+        <li>
+          <strong>Chúng tôi lưu hai thứ.</strong> Một là <em>sổ sự kiện</em>: mã sự kiện, loại sự
+          kiện, mã người dùng, môi trường (thật hay thử), thời điểm, và nội dung sự kiện thô mà
+          RevenueCat gửi. Hai là <em>quyền lợi hiện tại</em> của tài khoản bạn — gói nào, còn hiệu
+          lực đến khi nào.
+        </li>
+        <li>
+          <strong>Sổ sự kiện được giữ 400 ngày</strong> kể từ khi một sự kiện được xử lý xong, rồi
+          bị xoá tự động. Các dòng chưa xử lý xong được giữ lại cho tới khi giải quyết được — đó
+          chính là những dòng người ta cần khi có tranh chấp hoá đơn. Con số 400 ngày là 365 cộng
+          thêm quãng đệm, để khi một gói năm gia hạn thì chu kỳ trước đó vẫn còn.
+        </li>
+        <li>
+          <strong>Xoá tài khoản làm sổ này mất liên kết với bạn, chứ không xoá nó.</strong> Chúng
+          tôi thay mã người dùng của bạn bằng một mã ngẫu nhiên vô danh và giữ nguyên mọi thứ còn
+          lại. Bản ghi thanh toán vẫn còn; sợi dây nối nó với bạn thì không. Chúng tôi làm vậy vì
+          một bản ghi về tiền không nên bị xoá bởi chính người mà nó nói tới, và vì Google với Apple
+          trả lại cùng một mã người dùng cho cùng một người mãi mãi — nếu không cắt liên kết, một
+          người xoá tài khoản rồi đăng ký lại sẽ lặng lẽ dính lại lịch sử thanh toán mà họ vừa yêu
+          cầu quên đi. Cái giá phải trả là chúng tôi không còn đối soát được đăng ký cũ đó với
+          RevenueCat, và đó là cái giá đúng.
+        </li>
+      </ul>
+
+      <p lang="en">
+        Memo Chinese has a paid plan, <strong>on iOS only</strong>. Apple takes the payment,
+        RevenueCat resolves which entitlement you hold, and our server uses that to unlock the daily
+        allowances.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>We never see your payment details.</strong> Cards, receipts and renewals belong
+          entirely to Apple. The app shows RevenueCat's own template paywall, so prices come
+          straight from the App Store too.
+        </li>
+        <li>
+          <strong>RevenueCat receives your Firebase user identifier</strong>, so a purchase can be
+          attached to your account, plus the subscription events Apple sends it.
+        </li>
+        <li>
+          <strong>We store two things.</strong> An <em>event ledger</em>: event id, event type, user
+          identifier, environment (production or sandbox), timestamp, and the raw event RevenueCat
+          sent. And your account's <em>current entitlement</em> — which plan, valid until when.
+        </li>
+        <li>
+          <strong>The event ledger is kept for 400 days</strong> after an event is finished
+          processing, then deleted automatically. Rows that never finished are kept until they can
+          be resolved — those are the ones anyone ever opens this table to find. 400 is a year plus
+          a margin, so that when a yearly subscription renews its previous cycle is still there.
+        </li>
+        <li>
+          <strong
+            >Deleting your account unlinks this ledger from you rather than erasing it.</strong
+          >
+          We replace your user identifier with a fresh anonymous one and change nothing else on the
+          row. The payment record survives; the link to you does not. We do this because a record
+          about money should not be erasable by its own subject, and because Google and Apple return
+          the same identifier for the same person forever — without cutting the link, someone who
+          deleted their account and signed up again would silently re-attach the billing history
+          they had just asked us to forget. The cost is that we can no longer reconcile that old
+          subscription with RevenueCat, and that is the right cost to pay.
+        </li>
+      </ul>
+    </section>
+
+    <section id="bao-cao-su-co">
+      <h2>Báo cáo sự cố và số liệu sử dụng / Crash reports and analytics</h2>
+
+      <p>
+        Cả hai đều <strong>tắt mặc định</strong>, và cùng chịu chung một công tắc:
+        <em>Cài đặt → Chia sẻ dữ liệu sử dụng ẩn danh</em>. Một máy vừa cài xong không gửi đi thứ
+        gì. Bật hay tắt công tắc này không ảnh hưởng tới tiến độ học của bạn — tiến độ luôn được lưu
+        vào tài khoản.
+      </p>
+      <ul>
+        <li>
+          <strong>Hiện chưa có hệ thống thống kê nào.</strong> Ứng dụng không gửi số liệu sử dụng
+          tới đâu cả; phần mã dành cho việc đó là một khung rỗng, và ngay cả khi bạn bật công tắc
+          thì nó cũng không có nơi để gửi. Nếu điều này thay đổi, tài liệu này thay đổi trước.
+        </li>
+        <li>
+          <strong>Báo cáo sự cố dùng Sentry, và chỉ chạy khi có đủ hai điều kiện:</strong> bản dựng
+          phải được biên dịch kèm khoá Sentry, <em>và</em> bạn phải bật công tắc trên. Khi bạn tắt
+          nó, chúng tôi đóng luôn cả phần gốc (native) của Sentry, chứ không chỉ chặn ở lớp
+          JavaScript.
+        </li>
+        <li>
+          <strong>Nếu bạn bật, một báo cáo sự cố chứa:</strong> loại lỗi và vết gọi hàm trong mã của
+          chúng tôi, kiểu máy, phiên bản hệ điều hành, phiên bản ứng dụng, và một danh sách rút gọn
+          các yêu cầu mạng gần nhất — chỉ còn phương thức, mã trạng thái, và địa chỉ đã được cắt bỏ
+          phần truy vấn cùng mọi đoạn đường dẫn có thể chứa chữ Hán.
+        </li>
+        <li>
+          <strong>Báo cáo không chứa:</strong> địa chỉ IP của bạn, danh tính của bạn, nội dung yêu
+          cầu mạng, nhật ký console, từ bạn đang học, nội dung tìm kiếm, nét chữ, bản ghi âm hay
+          điểm phát âm. Chúng tôi cũng tắt hẳn việc đo hiệu năng và việc đếm phiên sử dụng.
+        </li>
+      </ul>
+
+      <p lang="en">
+        Both are <strong>off by default</strong> and share one switch:
+        <em>Cài đặt → Chia sẻ dữ liệu sử dụng ẩn danh</em> (Settings → Share anonymous usage data).
+        A fresh install sends nothing. Turning it on or off does not affect your learning progress —
+        that is always saved to your account.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>There is no analytics backend today.</strong> The app sends usage data nowhere;
+          the code for it is an empty shell with no destination even when the switch is on. If that
+          changes, this document changes first.
+        </li>
+        <li>
+          <strong>Crash reporting uses Sentry, and runs only when two things are true:</strong> the
+          build must be compiled with a Sentry key, <em>and</em> you must have turned the switch on.
+          When you turn it off we close Sentry's native layer as well, not just block it in
+          JavaScript.
+        </li>
+        <li>
+          <strong>If you turn it on, a crash report contains:</strong> the error type and a stack
+          trace through our code, your device model, OS version, app version, and a reduced list of
+          recent network requests — method, status code, and an address stripped of its query string
+          and of any path segment that could carry a Chinese word.
+        </li>
+        <li>
+          <strong>A report does not contain:</strong> your IP address, your identity, request
+          bodies, console logs, the words you are learning, your searches, your strokes, recordings
+          or pronunciation scores. Performance tracing and session counting are switched off
+          entirely.
+        </li>
+      </ul>
+    </section>
+
+    <section id="ben-thu-ba">
+      <h2>Các bên chúng tôi dùng / Third parties we use</h2>
+
+      <p>
+        Đây là toàn bộ danh sách các bên xử lý dữ liệu thay chúng tôi. Không bên nào trong đây là
+        mạng quảng cáo, và không bên nào nhận dữ liệu của bạn cho mục đích riêng của họ ngoài việc
+        cung cấp dịch vụ dưới đây.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Bên</th>
+            <th>Nhận gì</th>
+            <th>Để làm gì</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google — Firebase Authentication</td>
+            <td>
+              Email, mật khẩu đã băm (tài khoản email), tên hiển thị nếu nhà cung cấp trả về, mã
+              người dùng
+            </td>
+            <td>Đăng nhập, xác minh email, đặt lại mật khẩu</td>
+          </tr>
+          <tr>
+            <td>Google — ML Kit</td>
+            <td>Chỉ một lượt tải mô hình. <strong>Không nhận nét chữ của bạn</strong></td>
+            <td>Nhận dạng chữ viết tay ngay trên máy</td>
+          </tr>
+          <tr>
+            <td>Apple / Google — đăng nhập</td>
+            <td>Việc bạn đã đăng nhập vào ứng dụng này, và thông tin bạn đồng ý chia sẻ</td>
+            <td>Đăng nhập bằng Apple / Google</td>
+          </tr>
+          <tr>
+            <td>Railway</td>
+            <td>Vận hành máy chủ và cơ sở dữ liệu — tức toàn bộ dữ liệu tài khoản và học tập</td>
+            <td>Chỗ đặt máy chủ</td>
+          </tr>
+          <tr>
+            <td>Cloudflare — R2</td>
+            <td>Ảnh đại diện đã xử lý lại, tệp âm thanh của bài luyện AI</td>
+            <td>Lưu trữ tệp riêng tư</td>
+          </tr>
+          <tr>
+            <td>Anthropic — Claude</td>
+            <td>
+              Năm từ tiếng Trung kèm phiên âm và nghĩa, trình độ HSK dạng số, bối cảnh ngẫu nhiên.
+              <strong>Không có gì nhận diện bạn, không có chữ bạn viết</strong>
+            </td>
+            <td>Viết đoạn hội thoại luyện tập</td>
+          </tr>
+          <tr>
+            <td>Alibaba Cloud — DashScope (Qwen TTS, Singapore)</td>
+            <td>Câu tiếng Trung do mô hình viết ra, và tên giọng đọc</td>
+            <td>Đọc đoạn hội thoại thành tiếng</td>
+          </tr>
+          <tr>
+            <td>RevenueCat</td>
+            <td>Mã người dùng Firebase, sự kiện đăng ký từ Apple</td>
+            <td>Xác định quyền lợi gói trả phí</td>
+          </tr>
+          <tr>
+            <td>Apple — App Store</td>
+            <td>Thanh toán. <strong>Chúng tôi không nhận thông tin thẻ</strong></td>
+            <td>Bán và gia hạn gói đăng ký</td>
+          </tr>
+          <tr>
+            <td>Sentry</td>
+            <td>Báo cáo sự cố như mô tả ở trên — <strong>chỉ khi bạn bật</strong></td>
+            <td>Tìm và sửa lỗi làm ứng dụng văng</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p lang="en">
+        This is the complete list of parties that process data on our behalf. None of them is an
+        advertising network, and none receives your data for its own purposes beyond providing the
+        service below.
+      </p>
+      <table lang="en">
+        <thead>
+          <tr>
+            <th>Party</th>
+            <th>What it receives</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google — Firebase Authentication</td>
+            <td>
+              Email, hashed password (email accounts), display name if the provider returns one, a
+              user identifier
+            </td>
+            <td>Sign-in, email verification, password reset</td>
+          </tr>
+          <tr>
+            <td>Google — ML Kit</td>
+            <td>One model download. <strong>Never your strokes</strong></td>
+            <td>On-device handwriting recognition</td>
+          </tr>
+          <tr>
+            <td>Apple / Google — platform sign-in</td>
+            <td>That you signed in to this app, and whatever you agree to share</td>
+            <td>Sign in with Apple / Google</td>
+          </tr>
+          <tr>
+            <td>Railway</td>
+            <td>Runs the server and database — i.e. all account and learning data</td>
+            <td>Hosting</td>
+          </tr>
+          <tr>
+            <td>Cloudflare — R2</td>
+            <td>The re-encoded avatar, the AI drill's audio files</td>
+            <td>Private file storage</td>
+          </tr>
+          <tr>
+            <td>Anthropic — Claude</td>
+            <td>
+              Five Chinese words with pinyin and glosses, your HSK level as a number, a random scene
+              setting. <strong>Nothing identifying, nothing you wrote</strong>
+            </td>
+            <td>Writing the practice conversation</td>
+          </tr>
+          <tr>
+            <td>Alibaba Cloud — DashScope (Qwen TTS, Singapore)</td>
+            <td>The Chinese sentence the model wrote, and a voice name</td>
+            <td>Reading the conversation aloud</td>
+          </tr>
+          <tr>
+            <td>RevenueCat</td>
+            <td>Your Firebase user identifier, subscription events from Apple</td>
+            <td>Resolving your paid entitlement</td>
+          </tr>
+          <tr>
+            <td>Apple — App Store</td>
+            <td>Payment. <strong>We receive no card details</strong></td>
+            <td>Selling and renewing the subscription</td>
+          </tr>
+          <tr>
+            <td>Sentry</td>
+            <td>Crash reports as described above — <strong>only if you opt in</strong></td>
+            <td>Finding and fixing crashes</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="chuyen-du-lieu">
+      <h2>Chuyển dữ liệu ra nước ngoài / International transfers</h2>
+
+      <p>
+        Nói thẳng: <strong>dữ liệu của bạn rời khỏi Việt Nam.</strong> Chúng tôi là một nhà phát
+        triển cá nhân và không tự vận hành trung tâm dữ liệu nào; mọi thứ chạy trên hạ tầng đám mây
+        của các nhà cung cấp trong bảng trên, và họ đặt máy chủ ở nước ngoài — chủ yếu tại Hoa Kỳ,
+        cùng với Singapore đối với dịch vụ đọc thành tiếng.
+      </p>
+      <p>
+        Với người dùng trong Khu vực Kinh tế châu Âu và Vương quốc Anh: các chuyển giao này dựa trên
+        điều khoản hợp đồng tiêu chuẩn (standard contractual clauses) và các cơ chế tương đương
+        trong điều khoản xử lý dữ liệu của từng nhà cung cấp. Nếu bạn muốn biết chi tiết về một nhà
+        cung cấp cụ thể, hãy viết thư cho chúng tôi.
+      </p>
+
+      <p lang="en">
+        Plainly: <strong>your data leaves Vietnam.</strong> We are an individual developer and run
+        no data centre; everything runs on the cloud infrastructure of the providers listed above,
+        and they host it abroad — mostly in the United States, plus Singapore for the text-to-speech
+        service.
+      </p>
+      <p lang="en">
+        For users in the European Economic Area and the United Kingdom: these transfers rely on the
+        standard contractual clauses and equivalent mechanisms in each provider's data-processing
+        terms. Write to us if you want the detail for a particular provider.
+      </p>
+    </section>
+
+    <section id="co-so-phap-ly">
+      <h2>Cơ sở pháp lý / Legal bases</h2>
+
+      <p>
+        Với người dùng thuộc phạm vi GDPR, đây là cơ sở pháp lý cho từng mục đích. Với người dùng
+        tại Việt Nam, việc xử lý dữ liệu tuân theo Nghị định 13/2023/NĐ-CP; xem
+        <a href="#quyen-cua-ban">Quyền của bạn</a>.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Mục đích</th>
+            <th>Cơ sở</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tài khoản, đăng nhập, và toàn bộ dữ liệu học tập</td>
+            <td>Thực hiện hợp đồng — không có những thứ này thì không có ứng dụng</td>
+          </tr>
+          <tr>
+            <td>Gói đăng ký và quyền lợi trả phí</td>
+            <td>Thực hiện hợp đồng</td>
+          </tr>
+          <tr>
+            <td>Micrô, nhận dạng giọng nói, và thư viện ảnh</td>
+            <td>
+              Sự đồng ý của bạn (quyền hệ điều hành), rút lại bất cứ lúc nào trong Cài đặt máy
+            </td>
+          </tr>
+          <tr>
+            <td>Báo cáo sự cố và số liệu sử dụng</td>
+            <td>Sự đồng ý của bạn, tắt mặc định, rút lại bằng một công tắc</td>
+          </tr>
+          <tr>
+            <td>Giới hạn tần suất, chống lạm dụng, xử lý báo cáo nội dung</td>
+            <td>Lợi ích hợp pháp trong việc giữ dịch vụ an toàn và hoạt động được</td>
+          </tr>
+          <tr>
+            <td>Giữ sổ sự kiện đăng ký sau khi tài khoản bị xoá (đã ẩn danh)</td>
+            <td>Lợi ích hợp pháp trong việc có hồ sơ đúng về giao dịch và giải quyết tranh chấp</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p lang="en">
+        For users covered by the GDPR, these are the legal bases for each purpose. For users in
+        Vietnam, processing follows Decree 13/2023/NĐ-CP; see
+        <a href="#quyen-cua-ban">Your rights</a>.
+      </p>
+      <table lang="en">
+        <thead>
+          <tr>
+            <th>Purpose</th>
+            <th>Basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Account, sign-in, and all learning data</td>
+            <td>Performance of a contract — without these there is no app</td>
+          </tr>
+          <tr>
+            <td>Subscriptions and paid entitlements</td>
+            <td>Performance of a contract</td>
+          </tr>
+          <tr>
+            <td>Microphone, speech recognition, and photo library</td>
+            <td>Your consent (the OS permission), withdrawable at any time in system settings</td>
+          </tr>
+          <tr>
+            <td>Crash reports and usage data</td>
+            <td>Your consent, off by default, withdrawable with one switch</td>
+          </tr>
+          <tr>
+            <td>Rate limiting, abuse prevention, handling content reports</td>
+            <td>Legitimate interest in keeping the service safe and working</td>
+          </tr>
+          <tr>
+            <td>Keeping the subscription event ledger after deletion (anonymized)</td>
+            <td>
+              Legitimate interest in an accurate record of purchases and in resolving billing
+              disputes
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="quyen-cua-ban">
+      <h2>Quyền của bạn / Your rights</h2>
+
+      <p>
+        Bạn có các quyền dưới đây theo Nghị định 13/2023/NĐ-CP của Việt Nam và, nếu bạn ở Khu vực
+        Kinh tế châu Âu hoặc Vương quốc Anh, theo GDPR. Hai bộ quy định dùng từ khác nhau nhưng
+        trùng nhau gần hết, nên chúng tôi gộp lại:
+      </p>
+      <ul>
+        <li>
+          <strong>Được biết</strong> chúng tôi xử lý dữ liệu gì của bạn và vì sao — là tài liệu này.
+        </li>
+        <li><strong>Truy cập</strong> bản sao dữ liệu chúng tôi giữ về bạn.</li>
+        <li>
+          <strong>Sửa</strong> dữ liệu sai. Tên và email sửa ở nhà cung cấp đăng nhập; những thứ
+          khác hãy viết thư cho chúng tôi.
+        </li>
+        <li>
+          <strong>Xoá.</strong> Bạn tự làm được ngay trong ứng dụng, không cần hỏi ai:
+          <em>Cài đặt → Dữ liệu → Xoá tài khoản</em>. Xem
+          <a href="#luu-tru-va-xoa">Lưu trữ và xoá</a>.
+        </li>
+        <li>
+          <strong>Mang dữ liệu đi</strong> — nhận dữ liệu học tập của bạn ở định dạng máy đọc được.
+        </li>
+        <li><strong>Hạn chế hoặc phản đối</strong> việc xử lý dựa trên lợi ích hợp pháp.</li>
+        <li>
+          <strong>Rút lại sự đồng ý</strong> bất cứ lúc nào, với micrô, thư viện ảnh (trong Cài đặt
+          của máy) và báo cáo sự cố (công tắc trong ứng dụng). Việc rút lại không làm mất hiệu lực
+          những gì đã xử lý trước đó.
+        </li>
+        <li>
+          <strong>Khiếu nại.</strong> Bạn có thể khiếu nại với cơ quan quản lý nhà nước có thẩm
+          quyền — tại Việt Nam là Cục An ninh mạng và phòng, chống tội phạm sử dụng công nghệ cao
+          (A05) thuộc Bộ Công an; trong EEA/Anh là cơ quan bảo vệ dữ liệu nơi bạn cư trú.
+        </li>
+      </ul>
+      <p>
+        Gửi mọi yêu cầu tới
+        <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a> từ chính
+        địa chỉ email của tài khoản. Chúng tôi trả lời trong vòng 30 ngày. Chúng tôi không thu phí
+        cho các yêu cầu này.
+      </p>
+
+      <p lang="en">
+        You have the rights below under Vietnam's Decree 13/2023/NĐ-CP and, if you are in the
+        European Economic Area or the United Kingdom, under the GDPR. The two use different words
+        for mostly the same things, so they are listed together:
+      </p>
+      <ul lang="en">
+        <li><strong>To know</strong> what we process and why — this document.</li>
+        <li><strong>Access</strong> a copy of the data we hold about you.</li>
+        <li>
+          <strong>Rectification</strong> of anything wrong. Your name and email are changed at your
+          sign-in provider; write to us for anything else.
+        </li>
+        <li>
+          <strong>Erasure.</strong> You can do this yourself in the app without asking anyone:
+          <em>Cài đặt → Dữ liệu → Xoá tài khoản</em> (Settings → Data → Delete account). See
+          <a href="#luu-tru-va-xoa">Retention and deletion</a>.
+        </li>
+        <li><strong>Portability</strong> — your learning data in a machine-readable format.</li>
+        <li>
+          <strong>Restriction or objection</strong> where processing rests on a legitimate interest.
+        </li>
+        <li>
+          <strong>Withdrawing consent</strong> at any time, for the microphone and photo library (in
+          your device settings) and for crash reporting (the in-app switch). Withdrawing does not
+          undo processing that already happened.
+        </li>
+        <li>
+          <strong>Complaining.</strong> You may complain to the competent authority — in Vietnam the
+          Department of Cybersecurity and High-Tech Crime Prevention (A05) of the Ministry of Public
+          Security; in the EEA/UK, your local data-protection authority.
+        </li>
+      </ul>
+      <p lang="en">
+        Send any request to
+        <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a> from the
+        account's own email address. We answer within 30 days, and we charge nothing for it.
+      </p>
+    </section>
+
+    <section id="luu-tru-va-xoa">
+      <h2>Lưu trữ và xoá / Retention and deletion</h2>
+
+      <p>
+        Chúng tôi giữ dữ liệu tài khoản và dữ liệu học tập
+        <strong>chừng nào tài khoản của bạn còn tồn tại</strong>, vì đó chính là thứ làm nên tài
+        khoản. Không có bộ đếm ngược nào âm thầm xoá tiến độ của bạn.
+      </p>
+      <p>Có hai cách dừng lại, và chúng khác nhau:</p>
+      <ul>
+        <li>
+          <strong>Đặt lại tiến độ học</strong> (<em>Cài đặt → Dữ liệu</em>) giữ tài khoản và xoá
+          những gì bạn đã học. Bạn phải gõ đúng chữ xác nhận.
+        </li>
+        <li>
+          <strong>Xoá tài khoản</strong> (<em>Cài đặt → Dữ liệu</em>) xoá tất cả. Bạn phải đăng nhập
+          lại ngay trước đó và gõ đúng chữ xác nhận; với tài khoản Apple, ứng dụng còn thu hồi luôn
+          quyền truy cập đã cấp cho ứng dụng.
+        </li>
+      </ul>
+      <p>Khi bạn xoá tài khoản, những việc sau xảy ra:</p>
+      <ul>
+        <li>
+          <strong>Toàn bộ dữ liệu học tập của bạn bị xoá ngay lập tức</strong>, trong một giao dịch
+          duy nhất: lượt viết, từ đã thuộc, danh sách cần học, trình độ, lịch và nhật ký ôn tập, các
+          bài luyện AI của bạn, các báo cáo nội dung bạn đã gửi, và bản ghi quyền lợi trả phí.
+        </li>
+        <li>
+          <strong>Ảnh đại diện và thông tin đăng nhập trên Firebase bị xoá.</strong> Hai việc này
+          nằm ngoài cơ sở dữ liệu nên chúng được ghi vào một hàng đợi và thử lại cho tới khi xong,
+          thay vì thử một lần rồi thôi.
+        </li>
+        <li>
+          <strong>Mọi bản sao trên máy bị xoá</strong>, kể cả bản ghi âm và bản sao ảnh — xem
+          <a href="#du-lieu-tren-thiet-bi">Dữ liệu lưu trên máy bạn</a>.
+        </li>
+        <li>
+          <strong>Bản ghi tài khoản trống được giữ lại tối đa 24 giờ, rồi bị xoá hẳn.</strong> Lý do
+          rất cụ thể: một phiên đăng nhập Firebase còn hiệu lực tới một giờ sau khi thông tin đăng
+          nhập bị xoá, nên phải có thứ gì đó ở lại để từ chối phiên đó. Giữ lâu hơn một hai ngày thì
+          không còn là bảo vệ nữa mà thành lệnh cấm bạn đổi ý, nên nó hết hạn. Sau 24 giờ, bạn có
+          thể đăng ký lại bằng chính email đó như một người hoàn toàn mới.
+        </li>
+      </ul>
+      <p>
+        <strong>Hai thứ cố ý sống sót, và cả hai đều không còn nối được với bạn.</strong> Sổ sự kiện
+        đăng ký được giữ lại nhưng bị ẩn danh (xem
+        <a href="#dang-ky-thanh-toan">Đăng ký trả phí</a>). Và một bộ đếm chi phí chung của cả hệ
+        thống — chỉ gồm các mốc thời gian, không có mã người dùng, không có nội dung — được giữ để
+        khống chế chi phí gọi AI trong 24 giờ; nếu việc xoá tài khoản làm nó lùi lại thì bất kỳ ai
+        cũng có thể vô hiệu hoá nó bằng cách tạo tài khoản mới. Đoạn hội thoại do AI viết ra vẫn còn
+        trong bộ nhớ đệm dùng chung, nhưng nó vốn không nói gì về bạn và không mang tên ai.
+      </p>
+
+      <p lang="en">
+        We keep account and learning data <strong>for as long as your account exists</strong>,
+        because that is what the account is. Nothing silently expires your progress.
+      </p>
+      <p lang="en">There are two ways to stop, and they are different:</p>
+      <ul lang="en">
+        <li>
+          <strong>Reset learning progress</strong> (<em>Cài đặt → Dữ liệu</em>) keeps the account
+          and erases what you have learnt. It requires typing an exact confirmation.
+        </li>
+        <li>
+          <strong>Delete account</strong> (<em>Cài đặt → Dữ liệu</em>) removes everything. It
+          requires a fresh sign-in immediately beforehand and an exact typed confirmation; for Apple
+          accounts the app also revokes the access you granted it.
+        </li>
+      </ul>
+      <p lang="en">When you delete your account, this is what happens:</p>
+      <ul lang="en">
+        <li>
+          <strong>All of your learning data is deleted at once</strong>, in a single transaction:
+          writing attempts, mastered words, backlog, level, review schedule and history, your AI
+          drills, the content reports you filed, and your entitlement record.
+        </li>
+        <li>
+          <strong>Your avatar and your Firebase credential are deleted.</strong> Those two live
+          outside the database, so they are written to a queue and retried until they succeed rather
+          than attempted once and hoped for.
+        </li>
+        <li>
+          <strong>Every copy on the device is erased</strong>, recordings and the picked photo
+          included — see <a href="#du-lieu-tren-thiet-bi">Data kept on your device</a>.
+        </li>
+        <li>
+          <strong>An empty account row is held for at most 24 hours, then hard-deleted.</strong> The
+          reason is specific: a Firebase sign-in stays valid for up to an hour after the credential
+          is deleted, so something has to remain in order to refuse it. Kept longer than a day or
+          two it stops being a protection and becomes a ban on changing your mind, so it expires.
+          After 24 hours you can sign up again with the same email as a completely new user.
+        </li>
+      </ul>
+      <p lang="en">
+        <strong>Two things deliberately survive, and neither is linkable to you any more.</strong>
+        The subscription event ledger is kept but anonymized (see
+        <a href="#dang-ky-thanh-toan">Subscriptions</a>). And a service-wide spend counter — only
+        timestamps, no user identifier, no content — is kept to cap our AI costs over any 24 hours;
+        if deleting an account rolled it back, anyone could defeat it by making a new account. The
+        AI-written conversation stays in the shared cache, but it never said anything about you and
+        carries nobody's name.
+      </p>
+    </section>
+
+    <section id="bao-mat">
+      <h2>Bảo mật / Security</h2>
+
+      <p>
+        Chúng tôi chỉ kể ra những biện pháp thực sự có trong bản dựng này. Không có chứng nhận nào
+        được viện dẫn, vì chúng tôi không có chứng nhận nào.
+      </p>
+      <ul>
+        <li>
+          <strong>Mọi yêu cầu đều phải có danh tính.</strong> Trừ một điểm kiểm tra tình trạng máy
+          chủ, mọi đường dẫn API mà ứng dụng gọi đều nằm sau một bức tường xác thực: máy chủ xác
+          minh thẻ đăng nhập Firebase của bạn và lấy danh tính <em>chỉ</em> từ đó — không bao giờ từ
+          nội dung yêu cầu. (Đường dẫn duy nhất còn lại là nơi nhận thông báo đăng ký từ RevenueCat,
+          được bảo vệ bằng khoá bí mật và chữ ký riêng.) Toàn bộ lưu lượng đi qua HTTPS.
+        </li>
+        <li>
+          <strong>Cách ly ở tầng cơ sở dữ liệu.</strong> Ngoài việc mọi câu truy vấn đều lọc theo
+          chủ sở hữu, cơ sở dữ liệu còn bật row-level security và các truy vấn của người dùng chạy
+          dưới một vai trò Postgres bị hạn chế, nên một lỗi lập trình bỏ sót bộ lọc vẫn không đọc
+          được dữ liệu của người khác.
+        </li>
+        <li>
+          <strong>Tệp nằm trong kho riêng tư.</strong> Bucket R2 không công khai. Ảnh đại diện chỉ
+          lấy được qua yêu cầu đã đăng nhập; tệp âm thanh bài luyện dùng đường dẫn ký tạm chỉ sống
+          một giờ.
+        </li>
+        <li>
+          <strong>Khoá bí mật chỉ nằm ở máy chủ.</strong> Khoá của các nhà cung cấp AI, kho lưu trữ
+          và webhook là biến môi trường phía máy chủ; chúng không có trong mã nguồn và không được
+          gói vào ứng dụng.
+        </li>
+        <li>
+          <strong>Ảnh tải lên được dựng lại từ điểm ảnh</strong> trước khi lưu, nên siêu dữ liệu và
+          nội dung ẩn kèm theo không đi tiếp được.
+        </li>
+        <li>
+          <strong>Có giới hạn tần suất</strong> trên các thao tác tốn kém hoặc nhạy cảm, tính theo
+          tài khoản đã đăng nhập.
+        </li>
+      </ul>
+      <p>
+        Không hệ thống nào an toàn tuyệt đối. Nếu bạn phát hiện một lỗ hổng, xin viết thư cho chúng
+        tôi trước khi công bố; chúng tôi sẽ trả lời.
+      </p>
+
+      <p lang="en">
+        We list only measures that are actually in this build. No certification is claimed, because
+        we hold none.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>Every request must carry an identity.</strong> Apart from one health check, every
+          API route the app calls sits behind an authentication wall: the server verifies your
+          Firebase ID token and takes the identity <em>only</em> from it, never from a request body.
+          (The one remaining route is where RevenueCat delivers subscription notifications, guarded
+          by a shared secret and its own signature.) All traffic goes over HTTPS.
+        </li>
+        <li>
+          <strong>Isolation at the database layer.</strong> Beyond every query filtering by owner,
+          the database has row-level security enabled and user queries run under a restricted
+          Postgres role, so a programming mistake that forgot a filter still cannot read anyone
+          else's data.
+        </li>
+        <li>
+          <strong>Files live in private storage.</strong> The R2 bucket is not public. Avatars are
+          reachable only through an authenticated request; drill audio uses signed links that live
+          for one hour.
+        </li>
+        <li>
+          <strong>Secrets are server-side only.</strong> The AI provider, storage and webhook keys
+          are server environment variables; they are not in the source and are not bundled into the
+          app.
+        </li>
+        <li>
+          <strong>Uploaded images are rebuilt from decoded pixels</strong> before storage, so
+          attached metadata and hidden payloads cannot travel further.
+        </li>
+        <li>
+          <strong>Rate limits</strong> apply to expensive or sensitive operations, counted per
+          signed-in account.
+        </li>
+      </ul>
+      <p lang="en">
+        No system is perfectly secure. If you find a vulnerability, please write to us before
+        disclosing it; you will get an answer.
+      </p>
+    </section>
+
+    <section id="tuoi-toi-thieu">
+      <h2>Tuổi tối thiểu / Minimum age</h2>
+
+      <p>
+        Memo Chinese dành cho người dùng <strong>từ 13 tuổi trở lên</strong>. Khi tạo tài khoản, bạn
+        xác nhận mình đủ tuổi — câu này được ghi ngay tại màn hình đăng nhập và đăng ký, bên cạnh
+        đường dẫn tới chính sách này.
+      </p>
+      <ul>
+        <li>
+          <strong>Chúng tôi không hỏi ngày sinh.</strong> Yêu cầu ngày sinh để chặn trẻ nhỏ có nghĩa
+          là thu thập thêm một thông tin cá nhân của tất cả mọi người — kể cả của chính những em mà
+          nó định từ chối — mà vẫn không xác thực được điều gì, vì một ngày sinh tự khai cũng chỉ là
+          lời tự khai. Vì vậy đây là mức tuổi được công bố và bạn tự xác nhận, không phải một bước
+          xác minh tuổi.
+        </li>
+        <li>
+          <strong>Ứng dụng không hướng tới trẻ em.</strong> Không có quảng cáo, không theo dõi
+          (tracking), không nội dung dành riêng cho trẻ em, và ứng dụng không nằm trong danh mục
+          Kids của App Store hay chương trình Designed for Families của Google Play.
+        </li>
+        <li>
+          <strong>Chúng tôi không cố ý thu thập dữ liệu của trẻ dưới 13 tuổi.</strong> Nếu biết một
+          tài khoản thuộc về người dưới 13 tuổi, chúng tôi xoá tài khoản đó cùng dữ liệu học tập,
+          ảnh đại diện và thông tin đăng nhập kèm theo.
+        </li>
+        <li>
+          <strong>Phụ huynh và người giám hộ.</strong> Nếu bạn là phụ huynh hoặc người giám hộ của
+          một người dùng <strong>dưới 16 tuổi</strong> và không muốn chúng tôi xử lý dữ liệu của
+          người đó, hãy viết thư tới
+          <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a> và chúng
+          tôi sẽ xoá tài khoản. Bạn không cần chứng minh gì thêm ngoài địa chỉ email của tài khoản.
+        </li>
+        <li>
+          <strong>Tự xoá bất cứ lúc nào.</strong> Trong ứng dụng:
+          <em>Cài đặt → Dữ liệu → Xoá tài khoản</em>. Việc này xoá dữ liệu trên máy chủ, ảnh đại
+          diện, thông tin đăng nhập và mọi bản sao được lưu trên thiết bị.
+        </li>
+      </ul>
+
+      <p lang="en">
+        Memo Chinese is for people aged <strong>13 and over</strong>. Creating an account confirms
+        that you are; the sentence saying so is on the sign-in and sign-up screens themselves,
+        beside the link to this policy.
+      </p>
+      <ul lang="en">
+        <li>
+          <strong>We do not ask for a date of birth.</strong> Collecting one in order to exclude
+          younger children would take a new piece of personal data from everybody — including from
+          the children it is meant to turn away — and would verify nothing, because a self-entered
+          birthdate is no more evidence than a tapped confirmation. So this is a stated minimum you
+          confirm, not age verification.
+        </li>
+        <li>
+          <strong>The app is not directed at children.</strong> No advertising, no tracking, no
+          child-directed content, and it is in neither the App Store's Kids Category nor Google
+          Play's Designed for Families programme.
+        </li>
+        <li>
+          <strong>We do not knowingly collect data from children under 13.</strong> If we learn that
+          an account belongs to someone under 13, we delete that account along with its learning
+          data, avatar and sign-in credential.
+        </li>
+        <li>
+          <strong>Parents and guardians.</strong> If you are the parent or guardian of a user
+          <strong>under 16</strong> and do not want us to process their data, write to
+          <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a> and we
+          will delete the account. Nothing beyond the account's email address is needed.
+        </li>
+        <li>
+          <strong>Deleting it yourself, at any time.</strong> In the app:
+          <em>Cài đặt → Dữ liệu → Xoá tài khoản</em>. That removes the server-side data, the avatar,
+          the sign-in credential, and every copy held on the device.
+        </li>
+      </ul>
+    </section>
+
+    <section id="thay-doi">
+      <h2>Thay đổi chính sách / Changes to this policy</h2>
+
+      <p>
+        Tài liệu này nằm trong chính mã nguồn của ứng dụng, cạnh đoạn mã mà nó mô tả. Đó là cách làm
+        có chủ đích: một thay đổi về dữ liệu ứng dụng thu thập hoặc quyền ứng dụng xin phải được
+        viết vào đây trong cùng một bản phát hành, chứ không phải để đó rồi quên. Một phần kiểm thử
+        tự động sẽ báo lỗi nếu ứng dụng xin quyền micrô mà mục tương ứng ở đây biến mất, hoặc nếu độ
+        tuổi tối thiểu ghi ở đây khác với con số ứng dụng hiển thị.
+      </p>
+      <p>
+        Khi có thay đổi, ngày “cập nhật lần cuối” ở đầu trang sẽ đổi. Nếu thay đổi làm mở rộng những
+        gì chúng tôi thu thập hoặc mục đích sử dụng, chúng tôi sẽ báo trong ứng dụng trước khi thay
+        đổi đó có hiệu lực, và xin lại sự đồng ý ở những chỗ cần sự đồng ý.
+      </p>
+
+      <p lang="en">
+        This document lives inside the app's own source code, next to the code it describes. That is
+        deliberate: a change to what the app collects or asks for has to be written here in the same
+        release, not left as a task. An automated test fails if the app requests the microphone and
+        the matching section here disappears, or if the minimum age stated here differs from the one
+        the app shows.
+      </p>
+      <p lang="en">
+        When something changes, the “last updated” date at the top changes. If a change widens what
+        we collect or what it is used for, we will say so in the app before it takes effect, and ask
+        again for consent where consent is what covers it.
+      </p>
+    </section>
+
+    <section id="lien-he">
+      <h2>Liên hệ / Contact</h2>
+
+      <p>
+        Hồ Ngọc Lam — Memo Chinese<br />
+        <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a>
+      </p>
+      <p>
+        Hãy dùng địa chỉ này cho mọi việc: hỗ trợ, câu hỏi về quyền riêng tư, yêu cầu về dữ liệu, và
+        liên hệ của phụ huynh hoặc người giám hộ. Chúng tôi trả lời trong vòng 30 ngày.
+      </p>
+      <p>
+        Danh sách các thư viện mã nguồn mở và dữ liệu từ điển mà ứng dụng sử dụng, cùng giấy phép
+        của chúng, ở trang <a href="open-source-licenses.html">Giấy phép mã nguồn mở</a>.
+      </p>
+
+      <p lang="en">
+        Hồ Ngọc Lam — Memo Chinese<br />
+        <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a>
+      </p>
+      <p lang="en">
+        Use this address for everything: support, privacy questions, data requests, and messages
+        from a parent or guardian. We answer within 30 days.
+      </p>
+      <p lang="en">
+        The open-source libraries and dictionary data the app uses, with their licences, are listed
+        on the <a href="open-source-licenses.html">Open-source licences</a> page.
+      </p>
+    </section>
+  </body>
+</html>
