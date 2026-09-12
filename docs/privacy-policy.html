@@ -755,10 +755,10 @@
       <h2>Báo cáo một câu / Reporting a sentence</h2>
 
       <p>
-        Mỗi câu luyện tập do AI sinh ra đều có một nút hình lá cờ nhỏ bên cạnh (“Báo lỗi câu này”). Khi bạn gửi báo cáo,
-        chúng tôi lưu: bề mặt bạn đang xem và lý do bạn chọn (cả hai đều là danh sách cố định, không
-        phải chữ tự do), câu tiếng Trung và bản dịch tiếng Việt đúng như bạn nhìn thấy, mã bài học
-        nếu có, và <strong>ghi chú tuỳ chọn của bạn</strong>.
+        Mỗi câu luyện tập do AI sinh ra đều có một nút hình lá cờ nhỏ bên cạnh (“Báo lỗi câu này”).
+        Khi bạn gửi báo cáo, chúng tôi lưu: bề mặt bạn đang xem và lý do bạn chọn (cả hai đều là
+        danh sách cố định, không phải chữ tự do), câu tiếng Trung và bản dịch tiếng Việt đúng như
+        bạn nhìn thấy, mã bài học nếu có, và <strong>ghi chú tuỳ chọn của bạn</strong>.
       </p>
       <p>
         Ô ghi chú đó là
@@ -771,10 +771,11 @@
       </p>
 
       <p lang="en">
-        Every AI-generated practice sentence carries a small flag button beside it (“Báo lỗi câu này”). When
-        you send a report we store: which surface you were on and the reason you picked (both closed
-        lists, not free text), the Chinese sentence and its Vietnamese translation exactly as you
-        saw them, the session id where there is one, and <strong>your optional note</strong>.
+        Every AI-generated practice sentence carries a small flag button beside it (“Báo lỗi câu
+        này”). When you send a report we store: which surface you were on and the reason you picked
+        (both closed lists, not free text), the Chinese sentence and its Vietnamese translation
+        exactly as you saw them, the session id where there is one, and
+        <strong>your optional note</strong>.
       </p>
       <p lang="en">
         That note field is
@@ -1421,6 +1422,13 @@
           một giờ.
         </li>
         <li>
+          <strong>Phản hồi riêng tư không được lưu vào bộ nhớ đệm HTTP.</strong> Khi máy chủ gửi ảnh
+          đại diện hoặc âm thanh bài luyện qua một yêu cầu đã đăng nhập, phản hồi mang
+          <code>Cache-Control: no-store</code>. Chỉ thị này yêu cầu bộ nhớ đệm tuân thủ chuẩn không
+          giữ thêm một bản sao trên máy; nó áp dụng cả khi không tìm thấy tệp hoặc trình phát chỉ
+          lấy một đoạn âm thanh.
+        </li>
+        <li>
           <strong>Khoá bí mật chỉ nằm ở máy chủ.</strong> Khoá của các nhà cung cấp AI, kho lưu trữ
           và webhook là biến môi trường phía máy chủ; chúng không có trong mã nguồn và không được
           gói vào ứng dụng.
@@ -1461,6 +1469,13 @@
           <strong>Files live in private storage.</strong> The R2 bucket is not public. Avatars are
           reachable only through an authenticated request; drill audio uses signed links that live
           for one hour.
+        </li>
+        <li>
+          <strong>Private responses are not stored in HTTP caches.</strong> When our server sends an
+          avatar or drill audio through an authenticated request, the response carries
+          <code>Cache-Control: no-store</code>. This instructs standards-compliant caches not to
+          retain another device copy; it also applies when the file is absent or a media player
+          requests only a byte range.
         </li>
         <li>
           <strong>Secrets are server-side only.</strong> The AI provider, storage and webhook keys
