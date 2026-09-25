@@ -107,8 +107,8 @@
     <h1>Chính sách quyền riêng tư</h1>
     <p class="sub">Privacy policy — Memo Chinese</p>
     <p class="sub">
-      Có hiệu lực từ 12/09/2026 · Cập nhật lần cuối 13/09/2026 — Effective 12 September 2026 · Last
-      updated 13 September 2026
+      Có hiệu lực từ 12/09/2026 · Cập nhật lần cuối 25/09/2026 — Effective 12 September 2026 · Last
+      updated 25 September 2026
     </p>
 
     <section id="tom-tat">
@@ -268,6 +268,15 @@
       </p>
       <ul>
         <li>
+          <strong>Lần mở ứng dụng đầu tiên dùng một danh tính tạm thời.</strong> Phần hướng dẫn ban
+          đầu (chọn trình độ, lướt qua các từ bạn đã biết, viết thử hai từ đầu tiên) chạy trước khi
+          bạn đăng nhập, dưới một tài khoản ẩn danh do Firebase tạo ra. Tài khoản này không có tên,
+          không có email; nó chỉ có một mã người dùng. Những gì bạn làm trong phần hướng dẫn được
+          lưu trên máy chủ như <a href="#du-lieu-hoc-tap">dữ liệu học tập</a> bình thường, gắn với
+          mã đó. Khi bạn kết thúc hoặc đóng phần hướng dẫn, danh tính tạm thời bị đăng xuất; xem
+          <a href="#luu-tru-va-xoa">Lưu trữ và xoá</a> để biết dữ liệu đó đi đâu.
+        </li>
+        <li>
           <strong>Firebase giữ thông tin đăng nhập.</strong> Tuỳ cách bạn chọn, phần này gồm địa chỉ
           email, mật khẩu đã băm (chỉ với tài khoản email), tên hiển thị nếu nhà cung cấp trả về, và
           một mã người dùng do Firebase sinh ra.
@@ -276,8 +285,9 @@
           <strong>Cơ sở dữ liệu của chúng tôi không lưu email và không lưu tên của bạn.</strong> Bản
           ghi tài khoản trên máy chủ chỉ có: một số thứ tự nội bộ, mã người dùng Firebase, khoá và
           mã phiên bản của tệp ảnh đại diện, thời điểm tạo tài khoản, thời điểm hoạt động gần nhất,
-          và dấu đánh khi tài khoản đang được xoá. Đó là toàn bộ. Tên và email hiển thị trong màn
-          hình Cài đặt được đọc trực tiếp từ Firebase trên máy bạn, không đi qua chúng tôi.
+          một dấu cho biết đó có phải danh tính tạm thời của lần mở đầu tiên hay không, và dấu đánh
+          khi tài khoản đang được xoá. Đó là toàn bộ. Tên và email hiển thị trong màn hình Cài đặt
+          được đọc trực tiếp từ Firebase trên máy bạn, không đi qua chúng tôi.
         </li>
         <li>
           <strong>Đăng nhập bằng Apple và “Ẩn email của tôi”.</strong> Nếu bạn chọn ẩn địa chỉ,
@@ -298,6 +308,15 @@
       </p>
       <ul lang="en">
         <li>
+          <strong>The very first launch uses a temporary identity.</strong> The introduction
+          (choosing a level, swiping through words you already know, writing your first two words)
+          runs before you sign in, under an anonymous account Firebase creates. It has no name and
+          no email — only a user identifier. What you do in the introduction is stored on the server
+          as ordinary <a href="#du-lieu-hoc-tap">learning data</a> under that identifier. When you
+          finish or close the introduction, the temporary identity is signed out; see
+          <a href="#luu-tru-va-xoa">Retention and deletion</a> for where that data goes.
+        </li>
+        <li>
           <strong>Firebase holds the credential.</strong> Depending on how you sign in, that means
           your email address, a hashed password (email accounts only), a display name if the
           provider returns one, and a user identifier Firebase generates.
@@ -306,9 +325,9 @@
           <strong>Our own database stores neither your email nor your name.</strong> The account row
           on our server holds only an internal serial number, the Firebase user identifier, the key
           and version tag of your avatar file, when the account was created, when it was last seen,
-          and a marker set while it is being deleted. That is the whole record. The name and email
-          shown in Settings are read straight from Firebase on your device and never pass through
-          us.
+          a flag saying whether it is a first-launch temporary identity, and a marker set while it
+          is being deleted. That is the whole record. The name and email shown in Settings are read
+          straight from Firebase on your device and never pass through us.
         </li>
         <li>
           <strong>Sign in with Apple and Hide My Email.</strong> If you choose to hide your address,
@@ -338,7 +357,7 @@
         </li>
         <li>
           <strong>Từ đã thuộc và từ cần học.</strong> Danh sách từ bạn đã hoàn thành bài viết, và
-          danh sách từ bạn đã tra nhưng chưa học xong.
+          danh sách từ bạn đã tra nhưng chưa học xong, cùng dấu cho biết từ nào bạn tự bấm lưu.
         </li>
         <li><strong>Trình độ HSK</strong> bạn đã chọn.</li>
         <li>
@@ -379,7 +398,8 @@
         </li>
         <li>
           <strong>Mastered words and your backlog.</strong> The words whose writing session you
-          finished, and the words you looked up but have not finished learning.
+          finished, and the words you looked up but have not finished learning, with a mark on the
+          ones you saved yourself.
         </li>
         <li><strong>The HSK level</strong> you chose.</li>
         <li>
@@ -1324,6 +1344,30 @@
         <strong>chừng nào tài khoản của bạn còn tồn tại</strong>, vì đó chính là thứ làm nên tài
         khoản. Không có bộ đếm ngược nào âm thầm xoá tiến độ của bạn.
       </p>
+      <p>
+        <strong>Dữ liệu của phần hướng dẫn ban đầu</strong> là ngoại lệ duy nhất, vì nó thuộc về một
+        danh tính tạm thời chứ không phải tài khoản của bạn:
+      </p>
+      <ul>
+        <li>
+          Khi phần hướng dẫn kết thúc, ứng dụng nhận một vé dùng một lần, chỉ nằm trong bộ nhớ của
+          ứng dụng và không bao giờ được ghi xuống máy. Máy chủ chỉ lưu mã băm của vé, và vé hết hạn
+          sau 60 phút.
+        </li>
+        <li>
+          Nếu bạn đăng nhập trong thời gian đó vào một tài khoản <em>chưa từng học</em>, những gì
+          bạn làm trong phần hướng dẫn được chuyển sang tài khoản đó. Nếu tài khoản đã có tiến độ,
+          không có gì được chuyển, để không ghi đè lên những gì bạn đã học.
+        </li>
+        <li>
+          Dù có chuyển hay không, danh tính tạm thời và mọi dữ liệu còn lại của nó bị xoá theo đúng
+          quy trình xoá tài khoản nêu dưới đây.
+        </li>
+        <li>
+          Nếu không có lần đăng nhập nào nhận vé (ví dụ bạn đóng ứng dụng ở màn hình đăng nhập),
+          danh tính tạm thời và dữ liệu của nó bị xoá tự động sau <strong>72 giờ</strong>.
+        </li>
+      </ul>
       <p>Có hai cách dừng lại, và chúng khác nhau:</p>
       <ul>
         <li>
@@ -1375,6 +1419,31 @@
         We keep account and learning data <strong>for as long as your account exists</strong>,
         because that is what the account is. Nothing silently expires your progress.
       </p>
+      <p lang="en">
+        <strong>Data from the first-launch introduction</strong> is the one exception, because it
+        belongs to a temporary identity rather than to your account:
+      </p>
+      <ul lang="en">
+        <li>
+          When the introduction ends, the app receives a one-time ticket that is held only in the
+          app's memory and never written to the device. The server stores only a hash of it, and it
+          expires after 60 minutes.
+        </li>
+        <li>
+          If you sign in within that time to an account that has <em>never studied</em>, what you
+          did in the introduction moves onto that account. If the account already has progress,
+          nothing moves, so nothing you have learnt is overwritten.
+        </li>
+        <li>
+          Either way, the temporary identity and anything left under it are then deleted through the
+          same account-deletion process described below.
+        </li>
+        <li>
+          If no sign-in claims the ticket (for example, you close the app at the sign-in screen),
+          the temporary identity and its data are deleted automatically after
+          <strong>72 hours</strong>.
+        </li>
+      </ul>
       <p lang="en">There are two ways to stop, and they are different:</p>
       <ul lang="en">
         <li>
