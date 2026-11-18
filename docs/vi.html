@@ -1,0 +1,322 @@
+<!doctype html>
+<!--
+  Memo Chinese — project write-up (Vietnamese). English version: index.html.
+
+  This page is also the App Store listing's Support URL, so the footer keeps the
+  support contact and document links.
+
+  Self-contained: inline CSS/JS, fonts from ./assets, nothing from a CDN
+  (.nojekyll keeps GitHub Pages from injecting a theme).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memo Chinese</title>
+    <meta name="description" content="Hành trình mình xây dựng và phát hành Memo Chinese, ứng dụng iPhone giúp người Việt học tiếng Trung: tech stack, thử thách, phát hành trên App Store và marketing." />
+    <meta name="theme-color" content="#FAFCFF" />
+    <link rel="alternate" hreflang="en" href="index.html" />
+    <link rel="alternate" hreflang="vi" href="vi.html" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 400; font-display: swap; src: url("assets/fonts/inter-400.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; font-display: swap; src: url("assets/fonts/inter-600.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; font-display: swap; src: url("assets/fonts/inter-800.woff2") format("woff2"); }
+
+      :root {
+        color-scheme: light;
+        --ink: #0a1628;
+        --soft: #5d6c83;
+        --faint: #93a0b4;
+        --rule: rgba(10, 22, 40, 0.1);
+        --bg: #fafcff;
+        --paper: #ffffff;
+        --blue: #155cb8;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+      body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 var(--sans); overflow-x: hidden; }
+      img, video { display: block; max-width: 100%; height: auto; }
+      a { color: var(--blue); text-underline-offset: 3px; }
+      .page { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+
+
+      /* bar */
+      .bar { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink); text-decoration: none; }
+      .brand img { width: 26px; height: 26px; }
+      .bar nav { display: flex; gap: 18px; }
+      .bar nav a { color: var(--soft); text-decoration: none; }
+      .bar nav a:hover { color: var(--ink); }
+      .bar-right { display: flex; align-items: center; gap: 22px; }
+      .lang { display: flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+      .lang a { padding: 3px 10px; border-radius: 999px; color: var(--soft); text-decoration: none; }
+      .lang a:hover { color: var(--ink); }
+      .lang a[aria-current="page"] { background: var(--ink); color: var(--bg); }
+
+      /* hero */
+      .hero { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; padding: 64px 0 40px; }
+      .hero img { width: 150px; }
+      .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin: 0 0 12px; }
+      h1 { font-size: clamp(38px, 7vw, 60px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 16px; }
+      .tagline { font-size: 20px; color: var(--soft); margin: 0; max-width: 30em; }
+      .meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0; }
+      .meta div { padding: 16px 16px 16px 0; }
+      .meta dt { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
+      .meta dd { margin: 4px 0 0; font-size: 15px; font-weight: 600; }
+
+      /* media: rows of phone-shaped videos and screenshots */
+      .showcase { margin: 40px 0 0; }
+      figure { margin: 8px 0 24px; }
+      figcaption { font-size: 13px; color: var(--soft); margin-top: 10px; }
+      .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; align-items: start; }
+      .shots.two { grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; }
+      .shots.three { grid-template-columns: repeat(3, minmax(0, 240px)); justify-content: center; }
+      .shots.one { grid-template-columns: minmax(0, 300px); justify-content: center; }
+      .shots.strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+      @media (max-width: 640px) {
+        .shots.strip { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 42%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 0 20px 8px; }
+        .shots.strip > * { scroll-snap-align: start; }
+      }
+      .shots > * { width: 100%; border-radius: 18px; background: #0c0d10; box-shadow: 0 0 0 1px var(--rule), 0 18px 40px -28px rgba(10, 22, 40, 0.5); }
+      .shots a { display: block; overflow: hidden; }
+      .timeline figure { margin: 14px 0 0; }
+
+      /* numbers */
+      .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 40px 0 8px; }
+      .stat { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 16px; }
+      .stat b { display: inline-block; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 4px; }
+      .stat span { display: block; font-size: 13px; color: var(--soft); }
+
+      /* sections */
+      section { padding: 56px 0 24px; border-bottom: 1px solid var(--rule); scroll-margin-top: 12px; }
+      .num { font-size: 13px; font-weight: 600; color: var(--faint); font-variant-numeric: tabular-nums; margin: 0 0 6px; }
+      h2 { font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 16px; }
+      h3 { font-size: 17px; margin: 0 0 6px; }
+      section > p { max-width: 38em; margin: 0 0 16px; }
+
+      table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0 16px; }
+      th { text-align: left; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); padding: 0 12px 8px 0; border-bottom: 1px solid var(--rule); }
+      td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+      td:first-child { color: var(--soft); white-space: nowrap; width: 1%; }
+      td:nth-child(2) { font-weight: 600; }
+
+      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 8px 0 16px; }
+      .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 18px; }
+      .card p { margin: 0; font-size: 15px; color: var(--soft); }
+      .card .tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--blue); margin-bottom: 8px; }
+
+      ol.timeline { list-style: none; margin: 8px 0 16px 7px; padding: 0 0 0 22px; border-left: 2px solid var(--rule); }
+      .timeline li { position: relative; padding: 0 0 22px 8px; }
+      .timeline li::before { content: ""; position: absolute; left: -38px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--paper); border: 2px solid var(--blue); }
+      .timeline .when { font-size: 13px; color: var(--faint); font-weight: 600; }
+      .timeline p { margin: 4px 0 0; font-size: 15px; color: var(--soft); }
+
+      ul.list { margin: 8px 0 16px; padding-left: 1.2em; }
+      ul.list li { margin: 8px 0; }
+
+      footer { padding: 48px 0 64px; text-align: center; font-size: 14px; color: var(--soft); }
+      footer img { width: 40px; margin: 0 auto 16px; }
+      footer p { margin: 6px 0; }
+      footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin: 12px 0; }
+
+      @media (max-width: 640px) {
+        .bar nav { display: none; }
+        .hero { grid-template-columns: 1fr; padding-top: 40px; gap: 20px; }
+        .hero img { width: 84px; order: -1; }
+        .meta, .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        table, tbody, tr, td { display: block; width: auto; }
+        thead { display: none; }
+        tr { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+        td { border: 0; padding: 2px 0; }
+        td:first-child { white-space: normal; width: auto; font-size: 13px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="bar">
+        <a class="brand" href="#"><img src="assets/logo.png" alt="" width="26" height="26" />Memo Chinese</a>
+        <div class="bar-right">
+        <nav aria-label="Các phần">
+          <a href="#stack">Tech stack</a>
+          <a href="#building">Xây dựng</a>
+          <a href="#shipping">App Store</a>
+          <a href="#marketing">Marketing</a>
+        </nav>
+        <div class="lang" aria-label="Ngôn ngữ"><a href="index.html" lang="en">EN</a><a href="vi.html" lang="vi" aria-current="page">VI</a></div>
+        </div>
+      </div>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Tổng kết dự án</p>
+          <h1>Memo Chinese</h1>
+          <p class="tagline">Ứng dụng iPhone giúp người Việt học tiếng Trung bằng AI, spaced repetition, shadowing và handwriting recall, có gói miễn phí và gói Pro tính phí theo mức sử dụng.</p>
+        </div>
+        <img src="assets/logo.png" alt="Logo Memo Chinese" width="256" height="256" />
+      </header>
+
+      <dl class="meta">
+        <div><dt>Vai trò</dt><dd>iOS developer</dd></div>
+        <div><dt>Thời gian</dt><dd>Tháng 6 – tháng 8/2026</dd></div>
+        <div><dt>Nền tảng</dt><dd>iPhone (iOS)</dd></div>
+        <div><dt>Trạng thái</dt><dd>Đã gỡ vì lý do cá nhân</dd></div>
+      </dl>
+
+      <figure class="showcase">
+        <div class="shots three">
+          <video controls playsinline muted loop preload="metadata" poster="assets/video/promo-1.jpg" width="1080" height="1920">
+            <source src="assets/video/promo-1.mp4" type="video/mp4" />
+          </video>
+          <video controls playsinline loop preload="metadata" poster="assets/video/promo-2.jpg" width="368" height="640">
+            <source src="assets/video/promo-2.mp4" type="video/mp4" />
+          </video>
+          <video controls playsinline preload="none" poster="assets/video/app-review.jpg" width="480" height="1044">
+            <source src="assets/video/app-review.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption>Promo video trên App Store Connect, và video quay toàn bộ app.</figcaption>
+      </figure>
+
+      <figure>
+        <div class="shots strip">
+          <a href="assets/img/screens/01-hoc.jpg"><img src="assets/img/screens/01-hoc.jpg" alt="Ảnh chụp màn hình: học bất kỳ từ nào bạn muốn, đúng trình độ của bạn (màn hình chính)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/02-ngu-canh.jpg"><img src="assets/img/screens/02-ngu-canh.jpg" alt="Ảnh chụp màn hình: ôn từ vựng trong ngữ cảnh thực tế (truyện AI có chỗ trống)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/03-tu-moi.jpg"><img src="assets/img/screens/03-tu-moi.jpg" alt="Ảnh chụp màn hình: học từ mới mà không quên từ cũ (câu ghép cặp)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/04-viet.jpg"><img src="assets/img/screens/04-viet.jpg" alt="Ảnh chụp màn hình: viết thật nhiều chữ Hán (bài luyện viết)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/05-nhap-vai.jpg"><img src="assets/img/screens/05-nhap-vai.jpg" alt="Ảnh chụp màn hình: nhập vai một cuộc hội thoại" width="645" height="1402" loading="lazy" /></a>
+        </div>
+        <figcaption>Năm ảnh chụp màn hình trên App Store.</figcaption>
+      </figure>
+
+      <figure>
+        <div class="shots one">
+          <video controls playsinline muted preload="metadata" poster="assets/video/onboarding.jpg" width="1206" height="2622">
+            <source src="assets/video/onboarding.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption>Onboarding.</figcaption>
+      </figure>
+
+      <div class="stats">
+        <div class="stat"><b>50</b><span>Lượt tải app</span></div>
+        <div class="stat"><b>3</b><span>Người dùng trả phí</span></div>
+        <div class="stat"><b>~130k</b><span>Từ trong từ điển</span></div>
+        <div class="stat"><b>3</b><span>Tháng phát triển</span></div>
+      </div>
+
+      <section id="why">
+        <p class="num">01</p>
+        <h2>Vì sao mình làm app này</h2>
+        <p>Bản thân mình đã từng học tiếng Trung ở trung tâm. Trong quá trình học (bắt đầu từ HSK0) của mình, mình nhận thấy các vấn đề sau khiến bản thân mình và các bạn cùng lớp khó tiến bộ khi học: phần lớn mọi người đều gặp khó khăn với việc viết chữ Hán, nên mình làm app mà bắt người học phải viết thật nhiều. Đọc chữ Hán khi không có pinyin cũng là một vấn đề khó, nên app cũng bắt người học phải đọc nhiều hơn. Học từ vựng mà không thấy ứng dụng trong tình huống thực tế thì rất chán, nên app dùng AI để đặt từ vựng vào các tình huống và ngữ cảnh thật.</p>
+        <p>Ban đầu mình thấy rất khó khăn để xác định được app của mình thế nào mới được gọi là "xong". Người dùng kỳ vọng rất nhiều ở một app học tiếng Trung, hay bất kỳ app học ngoại ngữ nào. Chúng ta đã có Duolingo, Falou, còn ở Việt Nam thì có app từ điển Hanzii. Mình nhận thấy việc làm đủ các tính năng như họ là điều không thực tế. Vì vậy, mình xác định các tính năng cốt lõi giải quyết chính những pain point mình đã kể ở trên, và chỉ tập trung phát triển và tinh chỉnh chúng để phát hành và đưa sản phẩm lên store sớm nhất có thể.</p>
+      </section>
+
+      <section id="stack">
+        <p class="num">02</p>
+        <h2>Tech stack</h2>
+        <p>Ngay từ đầu, mình không đặt mục tiêu làm ra một app chịu được heavy load. Mình muốn phát hành thật nhanh mà vẫn giữ được scalability và security cần thiết, nên phần nào có dịch vụ third-party làm tốt (sign-in, hosting, payments) thì mình dùng luôn thay vì tự xây từ đầu.</p>
+        <table>
+          <thead><tr><th>Thành phần</th><th>Lựa chọn</th><th>Lý do</th></tr></thead>
+          <tbody>
+            <tr><td>App</td><td>Expo SDK 54, React Native 0.81, TypeScript</td><td>Một codebase cho cả iOS và Android.</td></tr>
+            <tr><td>Handwriting</td><td>Google ML Kit Digital Ink, on-device</td><td>Công nghệ nhận diện chữ viết chạy được on-device.</td></tr>
+            <tr><td>Sign-in</td><td>Firebase Auth (Apple, Google, email)</td><td>Dùng third-party login nên mình không phải tự xây hệ thống sign-in hay tự lo security cho mật khẩu.</td></tr>
+            <tr><td>Backend</td><td>Node.js, Express, PostgreSQL với row-level security</td><td>Backend đơn giản và quen thuộc.</td></tr>
+            <tr><td>Spaced repetition</td><td>FSRS (ts-fsrs)</td><td>Review scheduler open-source, giúp lên lịch ôn tập từ vựng cho người học.</td></tr>
+            <tr><td>AI</td><td>Anthropic Claude cho dialogue, Alibaba DashScope cho voice</td><td>Mình dùng Claude Sonnet để đặt câu, tạo bài khoá từ kho từ vựng của người học, và mô hình DashScope TTS để gen giọng đọc tiếng Trung tự nhiên cho tính năng nghe và shadowing theo.</td></tr>
+            <tr><td>Payments</td><td>RevenueCat</td><td>Handle phần subscription trên App Store.</td></tr>
+            <tr><td>Hosting</td><td>Railway</td><td>Managed hosting cho server và database: deploy và mở rộng mà không phải tự vận hành server.</td></tr>
+            <tr><td>Monitoring</td><td>Sentry</td><td>Nhận crash và error report từ người dùng.</td></tr>
+            <tr><td>CI</td><td>GitHub Actions: typecheck, lint, format</td><td>Chủ yếu dùng cho các setup CI cơ bản.</td></tr>
+            <tr><td>Website</td><td>GitHub Pages</td><td>Hosting miễn phí cho các tài liệu pháp lý mà App Store yêu cầu (Privacy Policy và Terms of Use).</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="building">
+        <p class="num">03</p>
+        <h2>Quá trình xây dựng</h2>
+        <p>Đây là ba khó khăn chính mà mình gặp trong quá trình xây dựng app. Tất nhiên còn nhiều khó khăn khác, nhưng đây là những phần tốn của mình nhiều thời gian và công sức nhất.</p>
+        <div class="cards">
+          <div class="card"><span class="tag">Thử thách</span><h3>Trải nghiệm người dùng</h3><p>Một ứng dụng gây được ấn tượng, được tin tưởng và được sử dụng nhiều cần có một trải nghiệm người dùng mượt mà và hiệu quả. Vì vậy, mình đã dành phần nhiều thời gian xây dựng, căn chỉnh và tối ưu UX của app, tối ưu từ UI cho tới phần backend. Và thay vì chỉ dựa trên cảm tính của bản thân, mình nhờ bạn bè làm tester và điều chỉnh flow dựa trên những chỗ họ thấy vướng và khó hiểu.</p></div>
+          <div class="card"><span class="tag">Thử thách</span><h3>Làm sạch từ điển</h3><p>Nguồn từ điển open-source mình dùng ban đầu rất lộn xộn. Mà app học tiếng Trung thì vận hành xoay quanh bộ từ điển. Mình đã tốn kha khá token để xây một AI workflow phân loại từ, phân loại nghĩa, chỉnh sửa nghĩa... tổng cộng gần 130.000 từ.</p></div>
+          <div class="card"><span class="tag">Thử thách</span><h3>Kiểm thử</h3><p>Việc kiểm tra các tính năng và tìm lỗi hệ thống hoá ra lại tốn khá nhiều thời gian và công sức, đặc biệt là ở phần thanh toán. Phần này tưởng đơn giản nhưng thực chất lại ẩn chứa rất nhiều edge case cần phải xử lý trước khi đưa lên store.</p></div>
+        </div>
+      </section>
+
+      <section id="shipping">
+        <p class="num">04</p>
+        <h2>Phát hành lên App Store</h2>
+        <ol class="timeline">
+          <li>
+            <h3>App Review</h3>
+            <figure>
+              <div class="shots two">
+                <video controls playsinline preload="none" poster="assets/video/app-review.jpg" width="480" height="1044">
+                  <source src="assets/video/app-review.mp4" type="video/mp4" />
+                </video>
+                <a href="assets/img/ready-for-distribution.jpg"><img src="assets/img/ready-for-distribution.jpg" alt="App Store Connect hiển thị phiên bản iOS 1.0.0 ở trạng thái Ready for Distribution" width="1206" height="2622" loading="lazy" /></a>
+              </div>
+              <figcaption>Video quay màn hình đầy đủ gửi cho App Review (27 phút), và phiên bản 1.0.0 được chuyển sang trạng thái Ready for Distribution.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <h3>Launch</h3><p>Phiên bản 1.0.0 chính thức có mặt trên App Store.</p>
+            <figure>
+              <div class="shots two">
+                <a href="assets/img/app-store-page.jpg"><img src="assets/img/app-store-page.jpg" alt="Trang App Store của Memo Chinese" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/app-store-ratings.jpg"><img src="assets/img/app-store-ratings.jpg" alt="Đánh giá trên App Store: 5.0 từ 4 lượt đánh giá" width="1206" height="2622" loading="lazy" /></a>
+              </div>
+              <figcaption>Trang App Store của app và những đánh giá đầu tiên.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <h3>Feedback</h3><p>Feedback từ bạn bè và giáo viên tiếng Trung của mình sau thời gian sử dụng app.</p>
+            <figure>
+              <div class="shots">
+                <a href="assets/img/friend-1.jpg"><img src="assets/img/friend-1.jpg" alt="Tin nhắn: một người bạn nói app ổn để luyện viết nhưng thiếu lộ trình học rõ ràng" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/friend-2.jpg"><img src="assets/img/friend-2.jpg" alt="Tin nhắn: một người bạn nói app rất hay và sẽ dùng khi có thời gian" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/friend-3.jpg"><img src="assets/img/friend-3.jpg" alt="Tin nhắn: một giáo viên dùng thử app ở trình độ HSK 1 và gợi ý giữ các màn hình cho người mới bằng tiếng Việt" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/friend-4.jpg"><img src="assets/img/friend-4.jpg" alt="Tin nhắn: ghi chú của giáo viên về cách đọc, từ loại và danh sách từ HSK 2.0 so với 3.0" width="1206" height="2622" loading="lazy" /></a>
+              </div>
+            </figure>
+          </li>
+        </ol>
+      </section>
+
+      <section id="marketing">
+        <p class="num">05</p>
+        <h2>Marketing</h2>
+        <p>Mình đã đăng các video giới thiệu app lên TikTok, nhưng không mang lại nhiều lượt tải. Phần lớn người dùng là bạn học cùng trung tâm và người quen cũng học tiếng Trung của mình.</p>
+        <figure>
+          <div class="shots one">
+            <a href="assets/img/promo-code-redeemed.jpg"><img src="assets/img/promo-code-redeemed.jpg" alt="Promo code đã đổi: Memo Chinese Pro, miễn phí một tháng" width="946" height="2047" loading="lazy" /></a>
+          </div>
+          <figcaption>Promo code một tháng Memo Chinese Pro miễn phí.</figcaption>
+        </figure>
+      </section>
+
+      <section id="advice">
+        <p class="num">06</p>
+        <h2>Kinh nghiệm làm app</h2>
+        <p>Nếu bạn đang làm app, hãy cố gắng hoàn thành thật nhanh. Nhanh ở đây không có nghĩa là làm ẩu và chấp nhận ship một sản phẩm mang tính chất AI slop, mà có nghĩa là hoàn thiện ổn ở phần UI/UX và đáp ứng được các yếu tố security và logic backend nền tảng. Sau khi đã ship app, mình tiếp tục phát triển dựa trên feedback của người dùng, tránh lãng phí thời gian phát triển các tính năng không ai cần đến và bỏ bê những tính năng quan trọng.</p>
+      </section>
+
+      <footer>
+        <img src="assets/logo.png" alt="" width="40" height="40" />
+        <p>Hỗ trợ: <a href="mailto:memochinese.support@gmail.com">memochinese.support@gmail.com</a></p>
+        <div class="links">
+          <a href="terms-of-use.html">Điều khoản sử dụng</a>
+          <a href="privacy-policy.html">Chính sách quyền riêng tư</a>
+          <a href="open-source-licenses.html">Giấy phép mã nguồn mở</a>
+        </div>
+        <p>© Hồ Ngọc Lam</p>
+      </footer>
+    </div>
+
+  </body>
+</html>

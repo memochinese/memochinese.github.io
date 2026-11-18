@@ -1,17 +1,6 @@
 <!doctype html>
 <!--
-  Memo Chinese — project write-up: what was built and what was learnt.
-
-  HOW TO FILL THIS IN
-  - Every blank is a <span class="fill">…</span> (or a block with class="fill").
-    Replace the text inside, then delete class="fill" so the yellow marker goes.
-    Search this file for  class="fill"  to find what is left.
-  - Media lives in docs/assets/video (MP4 + JPG poster) and docs/assets/img.
-    Screenshots of private chats must have names and avatars blurred first.
-  - Repeating blocks (challenge cards, timeline steps, marketing channels) can be
-    copied or deleted freely; the layout adapts.
-  - The tech stack table is pre-filled from the memozh repo (package.json files,
-    CI config). Check it, and fill in the "Why" column.
+  Memo Chinese — project write-up: how the app was built and shipped.
 
   This page is also the App Store listing's Support URL, so the footer keeps the
   support contact and document links.
@@ -23,9 +12,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Memo Chinese — Building the app</title>
-    <meta name="description" content="How I built and shipped Memo Chinese, an iPhone app for learning Chinese by handwriting: tech stack, testing, App Store release and marketing." />
+    <title>Memo Chinese</title>
+    <meta name="description" content="How I built and shipped Memo Chinese, an iPhone app that teaches Chinese to Vietnamese learners: tech stack, challenges, App Store release and marketing." />
     <meta name="theme-color" content="#FAFCFF" />
+    <link rel="alternate" hreflang="en" href="index.html" />
+    <link rel="alternate" hreflang="vi" href="vi.html" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
     <style>
@@ -42,8 +33,6 @@
         --bg: #fafcff;
         --paper: #ffffff;
         --blue: #155cb8;
-        --fill: #fff4c7;
-        --fill-line: #e6c34a;
         --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
       * { box-sizing: border-box; }
@@ -53,10 +42,6 @@
       a { color: var(--blue); text-underline-offset: 3px; }
       .page { max-width: 820px; margin: 0 auto; padding: 0 20px; }
 
-      /* Placeholder marker: remove class="fill" once written. */
-      .fill { background: var(--fill); box-shadow: inset 0 -2px 0 var(--fill-line); border-radius: 3px; padding: 0 3px; color: #6b5a12; }
-      p.fill, li.fill { padding: 10px 12px; }
-      ul.list li.fill { list-style: none; margin-left: -1.2em; }
 
       /* bar */
       .bar { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
@@ -65,6 +50,11 @@
       .bar nav { display: flex; gap: 18px; }
       .bar nav a { color: var(--soft); text-decoration: none; }
       .bar nav a:hover { color: var(--ink); }
+      .bar-right { display: flex; align-items: center; gap: 22px; }
+      .lang { display: flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+      .lang a { padding: 3px 10px; border-radius: 999px; color: var(--soft); text-decoration: none; }
+      .lang a:hover { color: var(--ink); }
+      .lang a[aria-current="page"] { background: var(--ink); color: var(--bg); }
 
       /* hero */
       .hero { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; padding: 64px 0 40px; }
@@ -83,6 +73,7 @@
       figcaption { font-size: 13px; color: var(--soft); margin-top: 10px; }
       .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; align-items: start; }
       .shots.two { grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; }
+      .shots.three { grid-template-columns: repeat(3, minmax(0, 240px)); justify-content: center; }
       .shots.one { grid-template-columns: minmax(0, 300px); justify-content: center; }
       .shots.strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
       @media (max-width: 640px) {
@@ -148,40 +139,46 @@
     <div class="page">
       <div class="bar">
         <a class="brand" href="#"><img src="assets/logo.png" alt="" width="26" height="26" />Memo Chinese</a>
+        <div class="bar-right">
         <nav aria-label="Sections">
           <a href="#stack">Stack</a>
-          <a href="#testing">Testing</a>
+          <a href="#building">Building</a>
           <a href="#shipping">App Store</a>
           <a href="#marketing">Marketing</a>
         </nav>
+        <div class="lang" aria-label="Language"><a href="index.html" lang="en" aria-current="page">EN</a><a href="vi.html" lang="vi">VI</a></div>
+        </div>
       </div>
 
       <header class="hero">
         <div>
           <p class="eyebrow">Project write-up</p>
           <h1>Memo Chinese</h1>
-          <p class="tagline"><span class="fill">One sentence: what the app is and who it is for.</span></p>
+          <p class="tagline">An iPhone app that teaches Chinese to Vietnamese learners through AI, spaced repetition, shadowing and handwriting recall, with a free tier and a Pro tier priced by usage.</p>
         </div>
         <img src="assets/logo.png" alt="Memo Chinese logo" width="256" height="256" />
       </header>
 
       <dl class="meta">
-        <div><dt>Role</dt><dd><span class="fill">e.g. Solo developer</span></dd></div>
-        <div><dt>Timeline</dt><dd><span class="fill">Month YYYY – Month YYYY</span></dd></div>
+        <div><dt>Role</dt><dd>iOS developer</dd></div>
+        <div><dt>Timeline</dt><dd>June – August 2026</dd></div>
         <div><dt>Platform</dt><dd>iPhone (iOS)</dd></div>
-        <div><dt>Status</dt><dd><span class="fill">e.g. Live on the App Store</span></dd></div>
+        <div><dt>Status</dt><dd>Taken down for personal reasons</dd></div>
       </dl>
 
       <figure class="showcase">
-        <div class="shots two">
+        <div class="shots three">
           <video controls playsinline muted loop preload="metadata" poster="assets/video/promo-1.jpg" width="1080" height="1920">
             <source src="assets/video/promo-1.mp4" type="video/mp4" />
           </video>
           <video controls playsinline loop preload="metadata" poster="assets/video/promo-2.jpg" width="368" height="640">
             <source src="assets/video/promo-2.mp4" type="video/mp4" />
           </video>
+          <video controls playsinline preload="none" poster="assets/video/app-review.jpg" width="480" height="1044">
+            <source src="assets/video/app-review.mp4" type="video/mp4" />
+          </video>
         </div>
-        <figcaption>App previews uploaded to App Store Connect. <span class="fill">Caption: what the videos show.</span></figcaption>
+        <figcaption>App Store Connect promo videos, and a full app recording.</figcaption>
       </figure>
 
       <figure>
@@ -201,40 +198,41 @@
             <source src="assets/video/onboarding.mp4" type="video/mp4" />
           </video>
         </div>
-        <figcaption>The first-run onboarding, recorded in the iOS Simulator (4 min). The Simulator has no Chinese speech recognition, so the read-aloud steps are simulated in this recording.</figcaption>
+        <figcaption>The onboarding.</figcaption>
       </figure>
 
       <div class="stats">
-        <div class="stat"><b class="fill">—</b><span>Downloads</span></div>
-        <div class="stat"><b class="fill">—</b><span>Active learners</span></div>
-        <div class="stat"><b class="fill">—</b><span>Words in the dictionary</span></div>
-        <div class="stat"><b class="fill">—</b><span>Months of work</span></div>
+        <div class="stat"><b>50</b><span>App downloads</span></div>
+        <div class="stat"><b>3</b><span>Paid learners</span></div>
+        <div class="stat"><b>~130k</b><span>Words in the dictionary</span></div>
+        <div class="stat"><b>3</b><span>Months of work</span></div>
       </div>
 
       <section id="why">
         <p class="num">01</p>
         <h2>Why I built it</h2>
-        <p class="fill">The problem you saw, who has it, and what was missing in existing apps.</p>
-        <p class="fill">What you set out to build, and what "done" meant for the first release.</p>
+        <p>I studied Chinese at a language centre myself. As I learnt (starting from HSK 0), I noticed a few problems that made it hard for me and my classmates to make progress. Most people struggle with writing Chinese characters, so I built an app that makes learners write a lot. Reading hanzi without pinyin is hard too, so the app also makes learners read more. And learning vocabulary without seeing it used in real situations is boring, so the app uses AI to put words into real situations and contexts.</p>
+        <p>At first it was hard to work out when my app could be called "done". People expect a lot from a Chinese app, or any language learning app. We already have Duolingo and Falou, and in Vietnam there is the Hanzii dictionary app. I realised that matching all their features wasn't realistic. So I defined the core features that solve exactly the pain points above, and focused only on building and fine-tuning those, so I could ship and get the app on the store as soon as possible.</p>
       </section>
 
       <section id="stack">
         <p class="num">02</p>
         <h2>Tech stack</h2>
+        <p>From the start, I wasn't aiming to build an app that could handle heavy load. I wanted to ship fast while keeping the scalability and security it needed, so wherever a third-party service did the job well (sign-in, hosting, payments), I used it rather than building from scratch.</p>
         <table>
           <thead><tr><th>Layer</th><th>Choice</th><th>Why</th></tr></thead>
           <tbody>
-            <tr><td>App</td><td>Expo SDK 54, React Native 0.81, TypeScript</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Handwriting</td><td>Google ML Kit Digital Ink, on-device</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Sign-in</td><td>Firebase Auth (Apple, Google, email)</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Backend</td><td>Node.js, Express, PostgreSQL with row-level security</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Spaced repetition</td><td>FSRS (ts-fsrs)</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>AI</td><td>Anthropic Claude for dialogues, Alibaba DashScope for voices</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Payments</td><td>RevenueCat</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Hosting</td><td>Railway</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Monitoring</td><td>Sentry</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>CI</td><td>GitHub Actions: typecheck, lint, format</td><td><span class="fill">Why this choice</span></td></tr>
-            <tr><td>Website</td><td>GitHub Pages</td><td><span class="fill">Why this choice</span></td></tr>
+            <tr><td>App</td><td>Expo SDK 54, React Native 0.81, TypeScript</td><td>One codebase for both iOS and Android.</td></tr>
+            <tr><td>Handwriting</td><td>Google ML Kit Digital Ink, on-device</td><td>Handwriting recognition that runs on-device.</td></tr>
+            <tr><td>Sign-in</td><td>Firebase Auth (Apple, Google, email)</td><td>Third-party login meant no sign-in system or passwords to build and secure myself.</td></tr>
+            <tr><td>Backend</td><td>Node.js, Express, PostgreSQL with row-level security</td><td>A simple, familiar backend.</td></tr>
+            <tr><td>Spaced repetition</td><td>FSRS (ts-fsrs)</td><td>An open-source review scheduler that plans when learners review their vocabulary.</td></tr>
+            <tr><td>AI</td><td>Anthropic Claude for dialogues, Alibaba DashScope for voices</td><td>I use Claude Sonnet to write sentences and build lessons from the learner's own vocabulary, and the DashScope TTS model to generate natural Chinese voices for listening and shadowing.</td></tr>
+            <tr><td>Payments</td><td>RevenueCat</td><td>Handles App Store subscriptions.</td></tr>
+            <tr><td>Hosting</td><td>Railway</td><td>Managed hosting for the server and database: deploy and scale without running my own servers.</td></tr>
+            <tr><td>Monitoring</td><td>Sentry</td><td>Crash and error reports from users.</td></tr>
+            <tr><td>CI</td><td>GitHub Actions: typecheck, lint, format</td><td>Mostly used for basic CI setup.</td></tr>
+            <tr><td>Website</td><td>GitHub Pages</td><td>Free hosting for the legal documents the App Store requires (Privacy Policy and Terms of Use).</td></tr>
           </tbody>
         </table>
       </section>
@@ -242,40 +240,20 @@
       <section id="building">
         <p class="num">03</p>
         <h2>Building it</h2>
+        <p>These are the three main challenges I faced while building the app. There were plenty of others, of course, but these took the most time and effort.</p>
         <div class="cards">
-          <div class="card"><span class="tag">Challenge</span><h3><span class="fill">Title</span></h3><p class="fill">What was hard, what you tried, what worked.</p></div>
-          <div class="card"><span class="tag">Challenge</span><h3><span class="fill">Title</span></h3><p class="fill">What was hard, what you tried, what worked.</p></div>
-          <div class="card"><span class="tag">Challenge</span><h3><span class="fill">Title</span></h3><p class="fill">What was hard, what you tried, what worked.</p></div>
+          <div class="card"><span class="tag">Challenge</span><h3>User experience</h3><p>An app that impresses people, earns their trust and gets used a lot needs a smooth, effective user experience. So I spent most of my time building, refining and optimising the app's UX, from the UI all the way to the backend. And rather than relying on my own instincts, I asked friends to be testers and adjusted the flow wherever they got stuck or confused.</p></div>
+          <div class="card"><span class="tag">Challenge</span><h3>Cleaning up the dictionary</h3><p>The open-source dictionary I started from was a mess, and a Chinese learning app revolves around its dictionary. I spent a fair amount of tokens building an AI workflow to classify words, classify meanings, fix definitions and more, across nearly 130,000 words.</p></div>
+          <div class="card"><span class="tag">Challenge</span><h3>Testing</h3><p>Testing features and hunting down bugs turned out to take a lot of time and effort, especially for payments. It looks simple, but it hides a lot of edge cases that have to be handled before going on the store.</p></div>
         </div>
       </section>
 
-      <section id="testing">
-        <p class="num">04</p>
-        <h2>Testing</h2>
-        <ul class="list">
-          <li class="fill">How you tested: automated tests, devices, simulators.</li>
-          <li class="fill">Beta testing: TestFlight, who tested, how many people.</li>
-          <li class="fill">The most useful thing testers found.</li>
-        </ul>
-        <figure>
-          <div class="shots">
-            <a href="assets/img/friend-1.jpg"><img src="assets/img/friend-1.jpg" alt="Chat: a friend says the app is fine for handwriting practice but lacks a clear learning path" width="1206" height="2622" loading="lazy" /></a>
-            <a href="assets/img/friend-2.jpg"><img src="assets/img/friend-2.jpg" alt="Chat: a friend says the app is great and they will use it when they have time" width="1206" height="2622" loading="lazy" /></a>
-            <a href="assets/img/friend-3.jpg"><img src="assets/img/friend-3.jpg" alt="Chat: a teacher tests the app at HSK 1 and suggests keeping beginner screens in Vietnamese" width="1206" height="2622" loading="lazy" /></a>
-            <a href="assets/img/friend-4.jpg"><img src="assets/img/friend-4.jpg" alt="Chat: the teacher's notes on readings, parts of speech and HSK 2.0 versus 3.0 word lists" width="1206" height="2622" loading="lazy" /></a>
-          </div>
-          <figcaption>Feedback from friends and a teacher who tried the app (names and photos blurred). <span class="fill">What you changed because of it.</span></figcaption>
-        </figure>
-      </section>
-
       <section id="shipping">
-        <p class="num">05</p>
+        <p class="num">04</p>
         <h2>Shipping to the App Store</h2>
         <ol class="timeline">
-          <li><span class="when fill">Date</span><h3>Apple Developer account</h3><p class="fill">What setting it up involved.</p></li>
-          <li><span class="when fill">Date</span><h3>TestFlight</h3><p class="fill">First build in testers' hands.</p></li>
           <li>
-            <span class="when fill">Date</span><h3>App Review</h3><p class="fill">Rejections, the reasons given, and how you fixed them.</p>
+            <h3>App Review</h3>
             <figure>
               <div class="shots two">
                 <video controls playsinline preload="none" poster="assets/video/app-review.jpg" width="480" height="1044">
@@ -287,42 +265,45 @@
             </figure>
           </li>
           <li>
-            <span class="when fill">Date</span><h3>Launch</h3><p class="fill">Release day.</p>
+            <h3>Launch</h3><p>Version 1.0.0 went live on the App Store.</p>
             <figure>
               <div class="shots two">
                 <a href="assets/img/app-store-page.jpg"><img src="assets/img/app-store-page.jpg" alt="The Memo Chinese App Store page" width="1206" height="2622" loading="lazy" /></a>
                 <a href="assets/img/app-store-ratings.jpg"><img src="assets/img/app-store-ratings.jpg" alt="App Store ratings: 5.0 from 4 ratings" width="1206" height="2622" loading="lazy" /></a>
               </div>
-              <figcaption>The live App Store page and its first ratings.</figcaption>
+              <figcaption>The app's App Store page and its first ratings.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <h3>Feedback</h3><p>Feedback from friends and my Chinese teacher after using the app for a while.</p>
+            <figure>
+              <div class="shots">
+                <a href="assets/img/friend-1.jpg"><img src="assets/img/friend-1.jpg" alt="Chat: a friend says the app is fine for handwriting practice but lacks a clear learning path" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/friend-2.jpg"><img src="assets/img/friend-2.jpg" alt="Chat: a friend says the app is great and they will use it when they have time" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/friend-3.jpg"><img src="assets/img/friend-3.jpg" alt="Chat: a teacher tests the app at HSK 1 and suggests keeping beginner screens in Vietnamese" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/friend-4.jpg"><img src="assets/img/friend-4.jpg" alt="Chat: the teacher's notes on readings, parts of speech and HSK 2.0 versus 3.0 word lists" width="1206" height="2622" loading="lazy" /></a>
+              </div>
             </figure>
           </li>
         </ol>
       </section>
 
       <section id="marketing">
-        <p class="num">06</p>
+        <p class="num">05</p>
         <h2>Marketing</h2>
-        <div class="cards">
-          <div class="card"><span class="tag fill">Channel</span><h3><span class="fill">What you tried</span></h3><p class="fill">Result, with a number if you have one.</p></div>
-          <div class="card"><span class="tag fill">Channel</span><h3><span class="fill">What you tried</span></h3><p class="fill">Result, with a number if you have one.</p></div>
-          <div class="card"><span class="tag fill">Channel</span><h3><span class="fill">What you tried</span></h3><p class="fill">Result, with a number if you have one.</p></div>
-        </div>
+        <p>I posted videos introducing the app on TikTok, but they didn't bring in many downloads. Most of my users were classmates from my language centre and people I know who also learn Chinese.</p>
         <figure>
           <div class="shots one">
             <a href="assets/img/promo-code-redeemed.jpg"><img src="assets/img/promo-code-redeemed.jpg" alt="A redeemed promo code: Memo Chinese Pro, one month free" width="946" height="2047" loading="lazy" /></a>
           </div>
-          <figcaption>A promo code for a free month of Memo Chinese Pro, as friends saw it after redeeming.</figcaption>
+          <figcaption>A promo code for one free month of Memo Chinese Pro.</figcaption>
         </figure>
       </section>
 
-      <section id="lessons">
-        <p class="num">07</p>
-        <h2>What I learnt</h2>
-        <ul class="list">
-          <li class="fill">Lesson one.</li>
-          <li class="fill">Lesson two.</li>
-          <li class="fill">What you would do differently next time.</li>
-        </ul>
+      <section id="advice">
+        <p class="num">06</p>
+        <h2>Advice for app builders</h2>
+        <p>If you're building an app, try to finish it quickly. Quick doesn't mean sloppy, or shipping something that feels like AI slop. It means getting the UI/UX right and covering the security and core backend logic. Once the app was shipped, I kept building on users' feedback, so I didn't waste time on features nobody needs while neglecting the ones that matter.</p>
       </section>
 
       <footer>
