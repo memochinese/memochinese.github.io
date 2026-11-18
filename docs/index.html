@@ -84,6 +84,11 @@
       .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; align-items: start; }
       .shots.two { grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; }
       .shots.one { grid-template-columns: minmax(0, 300px); justify-content: center; }
+      .shots.strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+      @media (max-width: 640px) {
+        .shots.strip { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 42%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 0 20px 8px; }
+        .shots.strip > * { scroll-snap-align: start; }
+      }
       .shots > * { width: 100%; border-radius: 18px; background: #0c0d10; box-shadow: 0 0 0 1px var(--rule), 0 18px 40px -28px rgba(10, 22, 40, 0.5); }
       .shots a { display: block; overflow: hidden; }
       .timeline figure { margin: 14px 0 0; }
@@ -177,6 +182,26 @@
           </video>
         </div>
         <figcaption>App previews uploaded to App Store Connect. <span class="fill">Caption: what the videos show.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="shots strip">
+          <a href="assets/img/screens/01-hoc.jpg"><img src="assets/img/screens/01-hoc.jpg" alt="Screenshot: learn any word you want, at your level (home screen)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/02-ngu-canh.jpg"><img src="assets/img/screens/02-ngu-canh.jpg" alt="Screenshot: review vocabulary in real context (AI story with blanks)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/03-tu-moi.jpg"><img src="assets/img/screens/03-tu-moi.jpg" alt="Screenshot: learn new words without forgetting old ones (pair sentence)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/04-viet.jpg"><img src="assets/img/screens/04-viet.jpg" alt="Screenshot: write lots of Chinese characters (writing drill)" width="645" height="1402" loading="lazy" /></a>
+          <a href="assets/img/screens/05-nhap-vai.jpg"><img src="assets/img/screens/05-nhap-vai.jpg" alt="Screenshot: roleplay a conversation" width="645" height="1402" loading="lazy" /></a>
+        </div>
+        <figcaption>The five App Store screenshots.</figcaption>
+      </figure>
+
+      <figure>
+        <div class="shots one">
+          <video controls playsinline muted preload="metadata" poster="assets/video/onboarding.jpg" width="1206" height="2622">
+            <source src="assets/video/onboarding.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption>The first-run onboarding, recorded in the iOS Simulator (4 min). The Simulator has no Chinese speech recognition, so the read-aloud steps are simulated in this recording.</figcaption>
       </figure>
 
       <div class="stats">
