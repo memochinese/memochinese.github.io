@@ -6,8 +6,8 @@
   - Every blank is a <span class="fill">…</span> (or a block with class="fill").
     Replace the text inside, then delete class="fill" so the yellow marker goes.
     Search this file for  class="fill"  to find what is left.
-  - Video: put your file at docs/assets/video/showcase.mp4 (optional poster at
-    docs/assets/video/showcase.jpg). Until it exists the slot shows a placeholder.
+  - Media lives in docs/assets/video (MP4 + JPG poster) and docs/assets/img.
+    Screenshots of private chats must have names and avatars blurred first.
   - Repeating blocks (challenge cards, timeline steps, marketing channels) can be
     copied or deleted freely; the layout adapts.
   - The tech stack table is pre-filled from the memozh repo (package.json files,
@@ -77,20 +77,16 @@
       .meta dt { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
       .meta dd { margin: 4px 0 0; font-size: 15px; font-weight: 600; }
 
-      /* video */
+      /* media: rows of phone-shaped videos and screenshots */
       .showcase { margin: 40px 0 0; }
-      .frame { position: relative; border-radius: 20px; overflow: hidden; background: #0c0d10; box-shadow: 0 0 0 1px var(--rule), 0 24px 60px -32px rgba(10, 22, 40, 0.5); }
-      .frame video { width: 100%; max-height: 80vh; margin: 0 auto; }
-      .frame .empty {
-        display: none; aspect-ratio: 16 / 9; place-content: center; text-align: center; gap: 12px;
-        background: repeating-linear-gradient(135deg, #f3f6fb 0 14px, #eef2f8 14px 28px); color: var(--soft); font-size: 15px;
-      }
-      .frame .empty img { width: 64px; margin: 0 auto; }
-      .frame .empty code { font-size: 13px; background: var(--paper); padding: 2px 6px; border-radius: 4px; }
-      .frame.no-video { background: none; }
-      .frame.no-video video { display: none; }
-      .frame.no-video .empty { display: grid; }
-      .showcase figcaption { font-size: 13px; color: var(--soft); margin-top: 10px; }
+      figure { margin: 8px 0 24px; }
+      figcaption { font-size: 13px; color: var(--soft); margin-top: 10px; }
+      .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; align-items: start; }
+      .shots.two { grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; }
+      .shots.one { grid-template-columns: minmax(0, 300px); justify-content: center; }
+      .shots > * { width: 100%; border-radius: 18px; background: #0c0d10; box-shadow: 0 0 0 1px var(--rule), 0 18px 40px -28px rgba(10, 22, 40, 0.5); }
+      .shots a { display: block; overflow: hidden; }
+      .timeline figure { margin: 14px 0 0; }
 
       /* numbers */
       .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 40px 0 8px; }
@@ -171,19 +167,16 @@
         <div><dt>Status</dt><dd><span class="fill">e.g. Live on the App Store</span></dd></div>
       </dl>
 
-      <!-- Showcase video: drop the file at docs/assets/video/showcase.mp4 -->
       <figure class="showcase">
-        <div class="frame" id="showcase-frame">
-          <video id="showcase" controls playsinline preload="metadata" poster="assets/video/showcase.jpg">
-            <source src="assets/video/showcase.mp4" type="video/mp4" />
+        <div class="shots two">
+          <video controls playsinline muted loop preload="metadata" poster="assets/video/promo-1.jpg" width="1080" height="1920">
+            <source src="assets/video/promo-1.mp4" type="video/mp4" />
           </video>
-          <div class="empty">
-            <img src="assets/logo.png" alt="" width="64" height="64" />
-            <div>Showcase video goes here</div>
-            <div><code>docs/assets/video/showcase.mp4</code></div>
-          </div>
+          <video controls playsinline loop preload="metadata" poster="assets/video/promo-2.jpg" width="368" height="640">
+            <source src="assets/video/promo-2.mp4" type="video/mp4" />
+          </video>
         </div>
-        <figcaption><span class="fill">Caption: what the video walks through.</span></figcaption>
+        <figcaption>App previews uploaded to App Store Connect. <span class="fill">Caption: what the videos show.</span></figcaption>
       </figure>
 
       <div class="stats">
@@ -239,6 +232,15 @@
           <li class="fill">Beta testing: TestFlight, who tested, how many people.</li>
           <li class="fill">The most useful thing testers found.</li>
         </ul>
+        <figure>
+          <div class="shots">
+            <a href="assets/img/friend-1.jpg"><img src="assets/img/friend-1.jpg" alt="Chat: a friend says the app is fine for handwriting practice but lacks a clear learning path" width="1206" height="2622" loading="lazy" /></a>
+            <a href="assets/img/friend-2.jpg"><img src="assets/img/friend-2.jpg" alt="Chat: a friend says the app is great and they will use it when they have time" width="1206" height="2622" loading="lazy" /></a>
+            <a href="assets/img/friend-3.jpg"><img src="assets/img/friend-3.jpg" alt="Chat: a teacher tests the app at HSK 1 and suggests keeping beginner screens in Vietnamese" width="1206" height="2622" loading="lazy" /></a>
+            <a href="assets/img/friend-4.jpg"><img src="assets/img/friend-4.jpg" alt="Chat: the teacher's notes on readings, parts of speech and HSK 2.0 versus 3.0 word lists" width="1206" height="2622" loading="lazy" /></a>
+          </div>
+          <figcaption>Feedback from friends and a teacher who tried the app (names and photos blurred). <span class="fill">What you changed because of it.</span></figcaption>
+        </figure>
       </section>
 
       <section id="shipping">
@@ -247,8 +249,28 @@
         <ol class="timeline">
           <li><span class="when fill">Date</span><h3>Apple Developer account</h3><p class="fill">What setting it up involved.</p></li>
           <li><span class="when fill">Date</span><h3>TestFlight</h3><p class="fill">First build in testers' hands.</p></li>
-          <li><span class="when fill">Date</span><h3>App Review</h3><p class="fill">Rejections, the reasons given, and how you fixed them.</p></li>
-          <li><span class="when fill">Date</span><h3>Launch</h3><p class="fill">Release day.</p></li>
+          <li>
+            <span class="when fill">Date</span><h3>App Review</h3><p class="fill">Rejections, the reasons given, and how you fixed them.</p>
+            <figure>
+              <div class="shots two">
+                <video controls playsinline preload="none" poster="assets/video/app-review.jpg" width="480" height="1044">
+                  <source src="assets/video/app-review.mp4" type="video/mp4" />
+                </video>
+                <a href="assets/img/ready-for-distribution.jpg"><img src="assets/img/ready-for-distribution.jpg" alt="App Store Connect showing iOS App Version 1.0.0 as Ready for Distribution" width="1206" height="2622" loading="lazy" /></a>
+              </div>
+              <figcaption>The full screen recording submitted to App Review (27 min), and version 1.0.0 marked Ready for Distribution.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <span class="when fill">Date</span><h3>Launch</h3><p class="fill">Release day.</p>
+            <figure>
+              <div class="shots two">
+                <a href="assets/img/app-store-page.jpg"><img src="assets/img/app-store-page.jpg" alt="The Memo Chinese App Store page" width="1206" height="2622" loading="lazy" /></a>
+                <a href="assets/img/app-store-ratings.jpg"><img src="assets/img/app-store-ratings.jpg" alt="App Store ratings: 5.0 from 4 ratings" width="1206" height="2622" loading="lazy" /></a>
+              </div>
+              <figcaption>The live App Store page and its first ratings.</figcaption>
+            </figure>
+          </li>
         </ol>
       </section>
 
@@ -260,6 +282,12 @@
           <div class="card"><span class="tag fill">Channel</span><h3><span class="fill">What you tried</span></h3><p class="fill">Result, with a number if you have one.</p></div>
           <div class="card"><span class="tag fill">Channel</span><h3><span class="fill">What you tried</span></h3><p class="fill">Result, with a number if you have one.</p></div>
         </div>
+        <figure>
+          <div class="shots one">
+            <a href="assets/img/promo-code-redeemed.jpg"><img src="assets/img/promo-code-redeemed.jpg" alt="A redeemed promo code: Memo Chinese Pro, one month free" width="946" height="2047" loading="lazy" /></a>
+          </div>
+          <figcaption>A promo code for a free month of Memo Chinese Pro, as friends saw it after redeeming.</figcaption>
+        </figure>
       </section>
 
       <section id="lessons">
@@ -284,18 +312,5 @@
       </footer>
     </div>
 
-    <script>
-      // Show the placeholder until docs/assets/video/showcase.mp4 exists.
-      (function () {
-        var frame = document.getElementById("showcase-frame");
-        var video = document.getElementById("showcase");
-        var source = video.querySelector("source");
-        function empty() { frame.classList.add("no-video"); }
-        source.addEventListener("error", empty);
-        video.addEventListener("error", empty);
-        video.addEventListener("loadedmetadata", function () { frame.classList.remove("no-video"); });
-        if (video.networkState === 3) empty();
-      })();
-    </script>
   </body>
 </html>
